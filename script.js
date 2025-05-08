@@ -1,16 +1,5 @@
 window.addEventListener("DOMContentLoaded", function () {
   console.log("Dashboard JS loaded!");
-
-  function updateClock() {
-    const clock = document.querySelector(".clock");
-    if (!clock) return;
-    const now = new Date();
-    const timeStr = now.toLocaleTimeString("vi-VN", { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-    clock.textContent = "🕒 " + timeStr;
-  }
-  setInterval(updateClock, 1000);
-  updateClock();
-
   const nameSpan = document.querySelector(".user-name");
   if (nameSpan) {
     const savedName = localStorage.getItem("userFullname");
