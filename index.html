@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Đăng nhập - Báo cáo công việc</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">   
+    <div class="illustration">
+      <img id="slideshow" src="assets/image/image1.jpg" alt="Ảnh minh hoạ" />
+      
+      <a class="prev" onclick="prevSlide()">❮</a>
+      <a class="next" onclick="nextSlide()">❯</a>
+      <div class="dot-container">
+        <span class="dot" onclick="showSlide(0)"></span>
+        <span class="dot" onclick="showSlide(1)"></span>
+        <span class="dot" onclick="showSlide(2)"></span>
+        <span class="dot" onclick="showSlide(3)"></span>
+      </div>
+    </div>
+
+    <div class="login-box">
+      <div class="logo">
+        <img src="assets/icon/logo.png" alt="Logo công ty" class="logo-img" />
+      </div>
+      <h1>Chào mừng trở lại!</h1>
+      <p class="subtitle">Vui lòng nhập thông tin đăng nhập của bạn</p>
+
+      <form id="login-form">
+        <input type="email" id="username" placeholder="Email" required />
+
+        <div class="password-container">
+          <input type="password" id="password" placeholder="Mật khẩu" required />
+          <span class="toggle-password">👁️</span>
+        </div>
+
+        <div class="form-options">
+          <label class="remember-me">
+            <input type="checkbox" id="remember"> Ghi nhớ đăng nhập
+          </label>
+          <a href="#" class="forgot-password">Quên mật khẩu?</a>
+        </div>
+
+        <button type="submit" class="btn login-btn">Đăng nhập</button>
+        <button type="button" class="btn google-btn">
+          <img src="https://img.icons8.com/color/16/000000/google-logo.png" alt="Google Icon"/>
+          Đăng nhập với Google
+        </button>
+      </form>
+
+      <p class="signup">Chưa có tài khoản? <a href="#">Đăng ký</a></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

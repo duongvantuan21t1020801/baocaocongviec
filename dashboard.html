@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard - Báo cáo công việc</title>
+  <link rel="stylesheet" href="dashboard.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <h2><i class="fas fa-chart-line"></i> Dashboard</h2>
+      <ul>
+        <li><i class="fas fa-tasks"></i><a href="#"> Báo cáo kế hoạch</a></li>
+        <li><i class="fas fa-book"></i><a href="#"> Nhật ký công việc</a></li>
+        <li><i class="fas fa-folder-open"></i><a href="#"> Dự án</a></li>
+        <li><i class="fas fa-plus-circle"></i><a href="#"> Add new</a></li>
+      </ul>
+      <button class="btn-create"><i class="fas fa-pen"></i> Tạo báo cáo mới</button>
+    </aside>
+
+    <main class="main-content">
+      <header class="top-bar">
+        <h1>Báo cáo công việc việc</h1>
+        <div class="top-right">
+          <i class="fas fa-bell icon"></i>
+          <span class="username">Nguyễn Văn A</span>
+          <img src="https://i.pravatar.cc/36?u=user" alt="avatar" class="avatar"/>
+          <button class="logout-btn"><i class="fas fa-sign-out-alt"></i> Đăng xuất</button>
+        </div>
+      </header>
+
+      <section class="report-section">
+        <h2>Báo cáo kế hoạch công việc</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Nội dung</th>
+              <th>Ngày</th>
+              <th>Người tạo</th>
+              <th>Trạng thái</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Soạn thảo báo cáo tuần</td>
+              <td>Hôm nay</td>
+              <td>Ba</td>
+              <td><span class="status blue">Chưa làm</span></td>
+            </tr>
+            <tr>
+              <td>Review cuối tháng</td>
+              <td>10/10</td>
+              <td>An</td>
+              <td><span class="status gray">Đang làm</span></td>
+            </tr>
+            <tr>
+              <td>Triển khai website nội bộ</td>
+              <td>10/10</td>
+              <td>Hải</td>
+              <td><span class="status green">Hoàn thành</span></td>
+            </tr>
+            <tr>
+              <td>Đào tạo kỹ năng thuyết trình</td>
+              <td>05/10</td>
+              <td>Linh</td>
+              <td><span class="status green">7/7</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="summary">
+        <div class="progress-box">
+          <h3>Nhật ký</h3>
+          <div class="circle">
+            <span>85%</span>
+          </div>
+          <p>10 công việc còn lại</p>
+        </div>
+
+        <div class="schedule">
+          <h3>Kế hoạch hôm nay</h3>
+          <ul>
+            <li><strong>08:00</strong> Viết báo cáo tổng kết</li>
+            <li><strong>10:00</strong> Kiểm tra tiến độ công việc</li>
+            <li><strong>13:00</strong> Họp nhóm dự án</li>
+            <li><strong>15:00</strong> Phân công công việc</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
