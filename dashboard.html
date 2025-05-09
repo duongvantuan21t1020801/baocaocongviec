@@ -3,93 +3,198 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dashboard - Báo cáo công việc</title>
-  <link rel="stylesheet" href="dashboard.css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <title>Báo cáo công việc</title>
+  <link rel="stylesheet" href="dashboard.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
   <div class="container">
+    
     <aside class="sidebar">
-      <h2><i class="fas fa-chart-line"></i> Dashboard</h2>
-      <ul>
-        <li><i class="fas fa-tasks"></i><a href="#"> Báo cáo kế hoạch</a></li>
-        <li><i class="fas fa-book"></i><a href="#"> Nhật ký công việc</a></li>
-        <li><i class="fas fa-folder-open"></i><a href="#"> Dự án</a></li>
-        <li><i class="fas fa-plus-circle"></i><a href="#"> Add new</a></li>
-      </ul>
-      <button class="btn-create"><i class="fas fa-pen"></i> Tạo báo cáo mới</button>
+      <div class="sidebar-header">
+        <i class="fas fa-home"></i>
+        <h2>Trang chủ</h2>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <ul>
+          <li class="active">
+            <i class="fas fa-chart-pie"></i>
+            <span>Bảng điều khiển</span>
+          </li>
+          <li>
+            <i class="fas fa-calendar-alt"></i>
+            <span>Báo cáo kế hoạch công việc</span>
+          </li>
+          <li>
+            <i class="fas fa-clipboard-list"></i>
+            <span>Nhật ký công việc</span>
+          </li>
+          <li>
+            <i class="fas fa-folder"></i>
+            <span>Dự án</span>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="btn-new">
+          <i class="fas fa-plus"></i>
+          <span>Thêm mới</span>
+        </button>
+        <button class="btn-plan">
+          <span>Tạo plan</span>
+          <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
     </aside>
 
+   
     <main class="main-content">
-      <header class="top-bar">
-        <h1>Báo cáo công việc việc</h1>
-        <div class="top-right">
-          <i class="fas fa-bell icon"></i>
-          <span class="username">Nguyễn Văn A</span>
-          <img src="https://i.pravatar.cc/36?u=user" alt="avatar" class="avatar"/>
-          <button class="logout-btn"><i class="fas fa-sign-out-alt"></i> Đăng xuất</button>
+      <header class="topbar">
+        <h2>Báo cáo công việc</h2>
+        <div class="topbar-right">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Tìm kiếm" />
+          </div>
+          <div class="notifications">
+            <i class="fas fa-bell"></i>
+          </div>
+          <div class="user-profile">
+            <img src="/api/placeholder/40/40" alt="Hồ sơ người dùng" />
+          </div>
         </div>
       </header>
 
-      <section class="report-section">
-        <h2>Báo cáo kế hoạch công việc</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Nội dung</th>
-              <th>Ngày</th>
-              <th>Người tạo</th>
-              <th>Trạng thái</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Soạn thảo báo cáo tuần</td>
-              <td>Hôm nay</td>
-              <td>Ba</td>
-              <td><span class="status blue">Chưa làm</span></td>
-            </tr>
-            <tr>
-              <td>Review cuối tháng</td>
-              <td>10/10</td>
-              <td>An</td>
-              <td><span class="status gray">Đang làm</span></td>
-            </tr>
-            <tr>
-              <td>Triển khai website nội bộ</td>
-              <td>10/10</td>
-              <td>Hải</td>
-              <td><span class="status green">Hoàn thành</span></td>
-            </tr>
-            <tr>
-              <td>Đào tạo kỹ năng thuyết trình</td>
-              <td>05/10</td>
-              <td>Linh</td>
-              <td><span class="status green">7/7</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-
-      <section class="summary">
-        <div class="progress-box">
-          <h3>Nhật ký</h3>
-          <div class="circle">
-            <span>85%</span>
+      <div class="content">
+        <div class="main-panel">
+          <div class="report-header">
+            <h2>Báo cáo kế hoạch công việc</h2>
+            <a href="#" class="view-all">Xem tất cả <i class="fas fa-chevron-right"></i></a>
           </div>
-          <p>10 công việc còn lại</p>
+
+          <table class="work-table">
+            <thead>
+              <tr>
+                <th>Phần mềm</th>
+                <th>Tuổi</th>
+                <th>Người tạo</th>
+                <th>Trạng thái</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Soạn thảo báo cáo tuần</td>
+                <td>Hôm nay</td>
+                <td>
+                  <span class="status-dot pending"></span>
+                  Chưa làm
+                </td>
+                <td>Ba</td>
+              </tr>
+              <tr>
+                <td>Review cuối tháng</td>
+                <td>10. tháng 10</td>
+                <td>
+                  <span class="status-dot in-progress"></span>
+                  Đang làm
+                </td>
+                <td>An</td>
+              </tr>
+              <tr>
+                <td>Triển khai website nội bộ</td>
+                <td>10. tháng 10</td>
+                <td>
+                  <span class="status-dot completed"></span>
+                  Hoàn thành
+                </td>
+                <td>Hải</td>
+              </tr>
+              <tr>
+                <td>Đào tạo kỹ năng thuyết trình</td>
+                <td>5. tháng 10</td>
+                <td>
+                  <span class="status-dot completed"></span>
+                  7/7
+                </td>
+                <td>Linh</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="projects-section">
+            <div class="project-card">
+              <img src="/api/placeholder/300/200" alt="Website nội bộ" />
+              <div class="project-info">
+                <h3>Website nội bộ</h3>
+                <p>5 người tham gia</p>
+                <button class="btn-create-report">
+                  <i class="fas fa-plus-square"></i>
+                  Tạo báo cáo
+                </button>
+              </div>
+            </div>
+
+            <div class="create-report-card">
+              <div class="create-report-content">
+                <i class="fas fa-plus"></i>
+                <p>Tạo báo cáo mới</p>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="schedule">
-          <h3>Kế hoạch hôm nay</h3>
-          <ul>
-            <li><strong>08:00</strong> Viết báo cáo tổng kết</li>
-            <li><strong>10:00</strong> Kiểm tra tiến độ công việc</li>
-            <li><strong>13:00</strong> Họp nhóm dự án</li>
-            <li><strong>15:00</strong> Phân công công việc</li>
-          </ul>
-        </div>
-      </section>
+        <aside class="side-panel">
+          <div class="widget progress-widget">
+            <div class="widget-header">
+              <h3>Nhật ký</h3>
+              <a href="#" class="view-all">Xem tất cả <i class="fas fa-chevron-right"></i></a>
+            </div>
+            
+            <div class="progress-circle">
+              <div class="circle-inner">
+                <span class="percent">85%</span>
+              </div>
+            </div>
+            
+            <div class="progress-text">
+              <span class="big-percent">85 %</span>
+              <p>10 công việc còn lại</p>
+            </div>
+          </div>
+
+          <div class="widget schedule-widget">
+            <h3>Kế hoạch</h3>
+            <div class="date-header">
+              <h4>Thứ Tư, 26 Tháng 6, 2023</h4>
+            </div>
+            
+            <ul class="schedule-list">
+              <li>
+                <div class="time-box blue">08:00</div>
+                <div class="task-name">Viết báo cáo tổng kết</div>
+              </li>
+              <li>
+                <div class="time-box light-blue">10:00</div>
+                <div class="task-name">Kiểm tra tiến độ công việc</div>
+              </li>
+              <li>
+                <div class="time-box light-blue">13:00</div>
+                <div class="task-name">Họp nhóm dự án</div>
+              </li>
+              <li>
+                <div class="time-box light-blue">15:00</div>
+                <div class="task-name">Phân công công việc</div>
+              </li>
+              <li>
+                <div class="time-box">03:30</div>
+                <div class="task-name">Nghỉ khi cần phải</div>
+              </li>
+            </ul>
+          </div>
+        </aside>
+      </div>
     </main>
   </div>
 
