@@ -1,0 +1,569 @@
+/* CSS cho các trang báo cáo */
+
+/* Biến màu sắc cho trạng thái báo cáo */
+:root {
+    --completed-color: #2a9d8f;
+    --in-progress-color: #2b6cb0;
+    --pending-color: #d69e2e;
+    --overdue-color: #e53e3e;
+  }
+  
+  /* Header báo cáo */
+  .report-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .report-header h3 {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+  }
+  
+  /* Tabs báo cáo */
+  .report-tabs {
+    display: flex;
+    margin-bottom: 1.5rem;
+    background-color: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  
+  .report-tab {
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    border-bottom: 2px solid transparent;
+    font-weight: 500;
+  }
+  
+  .report-tab:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  
+  .report-tab.active {
+    border-bottom: 2px solid var(--primary-color);
+    color: var(--primary-color);
+  }
+  
+  /* Nút tạo báo cáo */
+  .btn-create-report {
+    display: flex;
+    align-items: center;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .btn-create-report:hover {
+    background-color: #0055cc;
+  }
+  
+  .btn-create-report i {
+    margin-right: 0.5rem;
+  }
+  
+  /* Bộ lọc báo cáo */
+  .report-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background-color: white;
+    padding: 1rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 1.5rem;
+  }
+  
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .filter-group label {
+    font-size: 12px;
+    margin-bottom: 0.25rem;
+    color: var(--light-text);
+  }
+  
+  .filter-group input,
+  .filter-group select {
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    min-width: 150px;
+  }
+  
+  .filter-actions {
+    display: flex;
+    gap: 0.5rem;
+    align-self: flex-end;
+    margin-left: auto;
+  }
+  
+  .btn-filter {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .btn-filter:hover {
+    background-color: #0055cc;
+  }
+  
+  .btn-reset {
+    background-color: var(--light-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .btn-reset:hover {
+    background-color: #e2e8f0;
+  }
+  
+  /* Chuyển đổi chế độ xem */
+  .view-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+    background-color: white;
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .view-toggle:hover {
+    background-color: var(--light-bg);
+  }
+  
+  /* Danh sách báo cáo dạng lưới */
+  .reports-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .report-card {
+    background-color: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: var(--transition);
+    position: relative;
+  }
+  
+  .report-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .report-card .report-header {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 0;
+  }
+  
+  .report-card .report-header h4 {
+    font-size: 16px;
+    margin: 0;
+  }
+  
+  .report-date {
+    font-size: 12px;
+    color: var(--light-text);
+  }
+  
+  .report-content {
+    padding: 1rem;
+  }
+  
+  .report-content p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  .report-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 12px;
+  }
+  
+  .report-user,
+  .report-department {
+    color: var(--light-text);
+    display: flex;
+    align-items: center;
+  }
+  
+  .report-user i,
+  .report-department i {
+    margin-right: 0.25rem;
+  }
+  
+  .report-status {
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-weight: 500;
+  }
+  
+  .status-completed {
+    background-color: rgba(42, 157, 143, 0.2);
+    color: var(--completed-color);
+  }
+  
+  .status-in-progress {
+    background-color: rgba(43, 108, 176, 0.2);
+    color: var(--in-progress-color);
+  }
+  
+  .status-pending {
+    background-color: rgba(214, 158, 46, 0.2);
+    color: var(--pending-color);
+  }
+  
+  .status-overdue {
+    background-color: rgba(229, 62, 62, 0.2);
+    color: var(--overdue-color);
+  }
+  
+  .report-actions {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    display: flex;
+    gap: 0.25rem;
+    opacity: 0;
+    transition: var(--transition);
+  }
+  
+  .report-card:hover .report-actions {
+    opacity: 1;
+  }
+  
+  .btn-edit,
+  .btn-delete {
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .btn-edit {
+    background-color: rgba(43, 108, 176, 0.2);
+    color: var(--in-progress-color);
+  }
+  
+  .btn-delete {
+    background-color: rgba(229, 62, 62, 0.2);
+    color: var(--overdue-color);
+  }
+  
+  .btn-edit:hover {
+    background-color: rgba(43, 108, 176, 0.3);
+  }
+  
+  .btn-delete:hover {
+    background-color: rgba(229, 62, 62, 0.3);
+  }
+  
+  /* Danh sách báo cáo dạng bảng */
+  .reports-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  
+  .reports-table th,
+  .reports-table td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+  }
+  
+  .reports-table th {
+    background-color: var(--light-bg);
+    font-weight: 500;
+    color: var(--text-color);
+  }
+  
+  .reports-table tr {
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .reports-table tr:last-child {
+    border-bottom: none;
+  }
+  
+  .reports-table tr:hover {
+    background-color: var(--light-bg);
+  }
+  
+  .status-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+  }
+  
+  .status-dot.completed {
+    background-color: var(--completed-color);
+  }
+  
+  .status-dot.in-progress {
+    background-color: var(--in-progress-color);
+  }
+  
+  .status-dot.pending {
+    background-color: var(--pending-color);
+  }
+  
+  .status-dot.overdue {
+    background-color: var(--overdue-color);
+  }
+  
+  /* Modal */
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+  
+  .modal.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .modal-content {
+    background-color: white;
+    border-radius: var(--radius);
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    transform: translateY(20px);
+    transition: transform 0.3s;
+  }
+  
+  .modal.show .modal-content {
+    transform: translateY(0);
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .modal-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  
+  .modal-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--light-text);
+  }
+  
+  .modal-body {
+    padding: 1rem;
+  }
+  
+  /* Form */
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: inherit;
+  }
+  
+  .form-group textarea {
+    resize: vertical;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+  
+  .btn-submit {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .btn-submit:hover {
+    background-color: #0055cc;
+  }
+  
+  .btn-cancel {
+    background-color: var(--light-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .btn-cancel:hover {
+    background-color: #e2e8f0;
+  }
+  
+  .btn-confirm {
+    background-color: var(--overdue-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .btn-confirm:hover {
+    background-color: #c53030;
+  }
+  
+  /* Chi tiết báo cáo */
+  .report-detail {
+    padding: 1rem;
+  }
+  
+  .report-detail h4 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
+  
+  .report-description {
+    margin: 1rem 0;
+    line-height: 1.6;
+  }
+  
+  .report-info {
+    margin-top: 1.5rem;
+  }
+  
+  .info-item {
+    display: flex;
+    margin-bottom: 0.5rem;
+  }
+  
+  .info-label {
+    font-weight: 500;
+    width: 150px;
+  }
+  
+  /* Thông báo không có dữ liệu */
+  .no-data {
+    text-align: center;
+    padding: 2rem;
+    color: var(--light-text);
+    background-color: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .reports-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .report-filter {
+      flex-direction: column;
+    }
+    
+    .filter-group {
+      width: 100%;
+    }
+    
+    .filter-actions {
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+    
+    .btn-filter,
+    .btn-reset {
+      flex: 1;
+    }
+    
+    .report-tabs {
+      flex-wrap: wrap;
+    }
+    
+    .report-tab {
+      flex: 1;
+      text-align: center;
+      padding: 0.75rem;
+    }
+    
+    .modal-content {
+      width: 95%;
+    }
+  }

@@ -4,33 +4,35 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Báo cáo công việc</title>
-  <link rel="stylesheet" href="dashboard.css" />
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <div class="container">
-
     <aside class="sidebar">
-      <div class="sidebar-header">
-        <i class="fas fa-home"></i>
-        <h2>Tổng quan</h2>
-      </div>
-      
       <nav class="sidebar-nav">
         <ul id="menu-list">
-          <li class="active" data-title="Công việc đang thực hiện">
+          <li class="active" data-route="home" data-title="Trang chủ">
+            <i class="fas fa-home"></i>
+            <span>Trang chủ</span>
+          </li>
+          <li data-route="tasks" data-title="Công việc đang thực hiện">
             <i class="fas fa-chart-pie"></i>
             <span>Công việc đang thực hiện</span>
           </li>
-          <li data-title="Báo cáo kế hoạch công việc">
+          <li data-route="reports" data-title="Báo cáo kế hoạch công việc">
             <i class="fas fa-calendar-alt"></i>
             <span>Báo cáo kế hoạch công việc</span>
           </li>
-          <li data-title="Nhật ký công việc">
+          <li data-route="journals" data-title="Nhật ký công việc">
             <i class="fas fa-clipboard-list"></i>
             <span>Nhật ký công việc</span>
           </li>
-          <li data-title="Dự án">
+          <li data-route="projects" data-title="Dự án">
             <i class="fas fa-folder"></i>
             <span>Dự án</span>
           </li>
@@ -51,10 +53,10 @@
 
     <main class="main-content">
       <header class="topbar">
-        <button id="sidebarToggle" class="sidebar-toggle">☰</button>
-        <div class="overlay"></div>
-        <h2 id="topbar-title">Báo cáo công việc</h2>
-        
+        <div class="topbar-left">
+          <button id="sidebarToggle" class="menu-toggle">☰</button>
+          <h2 id="topbar-title">Trang chủ</h2>
+        </div>
         <div class="topbar-right">
           <div class="search-box">
             <i class="fas fa-search"></i>
@@ -68,137 +70,40 @@
           </div>
         </div>
       </header>
-
       <div class="content">
-        <div class="main-panel">
-          <div class="report-header">
-            <a href="#" class="view-all">Xem tất cả <i class="fas fa-chevron-right"></i></a>
-          </div>
-
-          <table class="work-table">
-            <thead>
-              <tr>
-                <th>Phần mềm</th>
-                <th>Tuổi</th>
-                <th>Người tạo</th>
-                <th>Trạng thái</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Soạn thảo báo cáo tuần</td>
-                <td>Hôm nay</td>
-                <td>
-                  <span class="status-dot pending"></span>
-                  Chưa làm
-                </td>
-                <td>Ba</td>
-              </tr>
-              <tr>
-                <td>Review cuối tháng</td>
-                <td>10 tháng 10</td>
-                <td>
-                  <span class="status-dot in-progress"></span>
-                  Đang làm
-                </td>
-                <td>An</td>
-              </tr>
-              <tr>
-                <td>Triển khai website nội bộ</td>
-                <td>10 tháng 10</td>
-                <td>
-                  <span class="status-dot completed"></span>
-                  Hoàn thành
-                </td>
-                <td>Hải</td>
-              </tr>
-              <tr>
-                <td>Đào tạo kỹ năng thuyết trình</td>
-                <td>5 tháng 10</td>
-                <td>
-                  <span class="status-dot completed"></span>
-                  7/7
-                </td>
-                <td>Linh</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div class="projects-section">
-            <div class="project-card">
-              <img src="assets/image/image5.jpg" alt="Quản lý chất thải công nghiệp" />
-              <div class="project-info">
-                <h3>Giám sát an toàn và xử lý chất thải công nghiệp</h3>
-                <p>Nhân viên tham gia</p>
-                <button class="btn-create-report">
-                  <i class="fas fa-plus-square"></i>
-                  Tạo báo cáo
-                </button>
-              </div>
-            </div>
-
-            <div class="create-report-card">
-              <div class="create-report-content">
-                <i class="fas fa-plus"></i>
-                <p>Tạo báo cáo mới</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <aside class="side-panel">
-          <div class="widget progress-widget">
-            <div class="widget-header">
-              <h3>Nhật ký</h3>
-              <a href="#" class="view-all">Xem tất cả <i class="fas fa-chevron-right"></i></a>
-            </div>
-            
-            <div class="progress-circle">
-              <div class="circle-inner">
-                <span class="percent">85%</span>
-              </div>
-            </div>
-            
-            <div class="progress-text">
-              <span class="big-percent">85 %</span>
-              <p>10 công việc còn lại</p>
-            </div>
-          </div>
-
-          <div class="widget schedule-widget">
-            <h3>Kế hoạch</h3>
-            <div class="date-header">
-              <h4>Thứ Tư, 26 Tháng 6, 2023</h4>
-            </div>
-            
-            <ul class="schedule-list">
-              <li>
-                <div class="time-box blue">08:00</div>
-                <div class="task-name">Viết báo cáo tổng kết</div>
-              </li>
-              <li>
-                <div class="time-box light-blue">10:00</div>
-                <div class="task-name">Kiểm tra tiến độ công việc</div>
-              </li>
-              <li>
-                <div class="time-box light-blue">13:00</div>
-                <div class="task-name">Họp nhóm dự án</div>
-              </li>
-              <li>
-                <div class="time-box light-blue">15:00</div>
-                <div class="task-name">Phân công công việc</div>
-              </li>
-              <li>
-                <div class="time-box">03:30</div>
-                <div class="task-name">Nghỉ khi cần phải</div>
-              </li>
-            </ul>
-          </div>
-        </aside>
+        <!-- Nội dung sẽ được render bởi JavaScript -->
       </div>
     </main>
   </div>
 
-  <script src="script.js"></script>
+  <!-- Thư viện Chart.js -->
+  <script src="assets/js/chart.js"></script>
+  
+  <!-- Data và API -->
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/reports.js"></script>
+  <script src="assets/js/reportUI.js"></script>
+  <script src="assets/js/projects.js"></script>
+  <script src="assets/js/journal.js"></script>
+  
+  <!-- Router -->
+  <script src="assets/js/router.js"></script>
+  
+  <!-- Các trang -->
+  <script src="assets/js/home.js"></script>
+  <script src="assets/js/task.js"></script>
+  
+  <!-- Khởi tạo ứng dụng -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Khởi tạo router
+      router.init();
+      
+      // Xử lý sự kiện toggle sidebar
+      document.getElementById('sidebarToggle').addEventListener('click', function() {
+        document.querySelector('.container').classList.toggle('sidebar-collapsed');
+      });
+    });
+  </script>
 </body>
 </html>
