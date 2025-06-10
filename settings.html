@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cài đặt hệ thống</title>
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="assets/css/settings.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-page">
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="fas fa-tasks"></i>
+                    Môi Trường Á Châu
+                </div>
+                <div class="sidebar-user">
+                    <img src="assets/icon/avatar.jpg" 
+                         alt="User Avatar" class="sidebar-avatar" id="sidebarAvatar">
+                    <div class="sidebar-user-info">
+                        <h4 id="sidebarUserName">Người dùng</h4>
+                        <p id="sidebarUserRole">Vai trò</p>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="work-plans.html" class="nav-item">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>Kế hoạch công việc</span>
+                </a>
+                <a href="daily-logs.html" class="nav-item">
+                    <i class="fas fa-book"></i>
+                    <span>Nhật ký công việc</span>
+                </a>
+                <a href="reports.html" class="nav-item">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Báo cáo</span>
+                </a>
+                <a href="team-management.html" class="nav-item">
+                    <i class="fas fa-users"></i>
+                    <span>Quản lý nhóm</span>
+                </a>
+                <a href="profile.html" class="nav-item">
+                    <i class="fas fa-user"></i>
+                    <span>Hồ sơ cá nhân</span>
+                </a>
+                <a href="settings.html" class="nav-item active">
+                    <i class="fas fa-cog"></i>
+                    <span>Cài đặt</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Đăng xuất</span>
+                </button>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header class="header">
+                <div class="header-left">
+                    <button class="sidebar-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="page-title">Cài đặt hệ thống</h1>
+                </div>
+                
+                <div class="header-right">
+                    <div class="header-search">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Tìm kiếm...">
+                        </div>
+                    </div>
+                    
+                    <div class="header-actions">
+                        <button class="notification-btn">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge">3</span>
+                        </button>
+                        
+                        <div class="user-menu">
+                            <div class="user-avatar">
+                                <img src="assets/icon/avatar.jpg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <div class="content-area">
+                <div class="settings-container">
+                    <div class="settings-nav">
+                        <div class="settings-nav-item active" onclick="showSettingsSection('general')">
+                            <i class="fas fa-cog"></i>
+                            <span>Cài đặt chung</span>
+                        </div>
+                        <div class="settings-nav-item" onclick="showSettingsSection('appearance')">
+                            <i class="fas fa-palette"></i>
+                            <span>Giao diện</span>
+                        </div>
+                        <div class="settings-nav-item" onclick="showSettingsSection('notifications')">
+                            <i class="fas fa-bell"></i>
+                            <span>Thông báo</span>
+                        </div>
+                        <div class="settings-nav-item" onclick="showSettingsSection('security')">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Bảo mật</span>
+                        </div>
+                        <div class="settings-nav-item" onclick="showSettingsSection('integrations')">
+                            <i class="fas fa-plug"></i>
+                            <span>Tích hợp</span>
+                        </div>
+                        <div class="settings-nav-item" onclick="showSettingsSection('backup')">
+                            <i class="fas fa-database"></i>
+                            <span>Sao lưu & Khôi phục</span>
+                        </div>
+                        <div class="settings-nav-item" onclick="showSettingsSection('about')">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Về Môi trường Á Châu</span>
+                        </div>
+                    </div>
+                    <div class="settings-content">
+                        <div class="settings-section active" id="general-section">
+                            <div class="section-header">
+                                <h2>Cài đặt chung</h2>
+                                <p>Cấu hình các thiết lập cơ bản của hệ thống</p>
+                            </div>
+                            
+                            <div class="settings-group">
+                                <h3>Ngôn ngữ và Khu vực</h3>
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <label>Ngôn ngữ hiển thị</label>
+                                        <p>Chọn ngôn ngữ cho giao diện ứng dụng</p>
+                                    </div>
+                                    <select class="setting-select" id="languageSelect">
+                                        <option value="vi" selected>Tiếng Việt</option>
+                                        <option value="en">English</option>
+                                        <option value="zh">中文</option>
+                                        <option value="ja">日本語</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <label>Múi giờ</label>
+                                        <p>Thiết lập múi giờ cho hiển thị thời gian</p>
+                                    </div>
+                                    <select class="setting-select" id="timezoneSelect">
+                                        <option value="Asia/Ho_Chi_Minh" selected>GMT+7 (Việt Nam)</option>
+                                        <option value="Asia/Tokyo">GMT+9 (Tokyo)</option>
+                                        <option value="America/New_York">GMT-5 (New York)</option>
+                                        <option value="Europe/London">GMT+0 (London)</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <label>Định dạng ngày</label>
+                                        <p>Chọn cách hiển thị ngày tháng</p>
+                                    </div>
+                                    <select class="setting-select" id="dateFormatSelect">
+                                        <option value="dd/mm/yyyy" selected>DD/MM/YYYY</option>
+                                        <option value="mm/dd/yyyy">MM/DD/YYYY</option>
+                                        <option value="yyyy-mm-dd">YYYY-MM-DD</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="settings-group">
+                                <h3>Hiệu suất</h3>
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <label>Tự động lưu</label>
+                                        <p>Tự động lưu thay đổi khi chỉnh sửa</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="autoSave" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <label>Hiệu ứng động</label>
+                                        <p>Bật/tắt các hiệu ứng chuyển động</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="animations" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="settings-section" id="appearance-section">
+                            <div class="section-header">
+                                <h2>Giao diện</h2>
+                                <p>Tùy chỉnh giao diện và màu sắc của ứng dụng</p>
+                            </div>
+                            
+                            <div class="settings-group">
+                                <h3>Chủ đề</h3>
+                                <div class="theme-options">
+                                    <div class="theme-option active" data-theme="light">
+                                        <div class="theme-preview light-theme">
+                                            <div class="theme-header"></div>
+                                            <div class="theme-sidebar"></div>
+                                            <div class="theme-content"></div>
+                                        </div>
+                                        <span>Sáng</span>
+                                    </div>
+                                    
+                                    <div class="theme-option" data-theme="dark">
+                                        <div class="theme-preview dark-theme">
+                                            <div class="theme-header"></div>
+                                            <div class="theme-sidebar"></div>
+                                            <div class="theme-content"></div>
+                                        </div>
+                                        <span>Tối</span>
+                                    </div>
+                                    
+                                    <div class="theme-option" data-theme="auto">
+                                        <div class="theme-preview auto-theme">
+                                            <div class="theme-header"></div>
+                                            <div class="theme-sidebar"></div>
+                                            <div class="theme-content"></div>
+                                        </div>
+                                        <span>Tự động</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="settings-group">
+                                <h3>Màu sắc</h3>
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <label>Màu chủ đạo</label>
+                                        <p>Chọn màu chính cho giao diện</p>
+                                    </div>
+                                    <div class="color-options">
+                                        <div class="color-option active" data-color="#667eea" style="background: #667eea;"></div>
+                                        <div class="color-option" data-color="#f093fb" style="background: #f093fb;"></div>
+                                        <div class="color-option" data-color="#4facfe" style="background: #4facfe;"></div>
+                                        <div class="color-option" data-color="#43e97b" style="background: #43e97b;"></div>
+                                        <div class="color-option" data-color="#fa709a" style="background: #fa709a;"></div>
+                                        <div class="color-option" data-color="#ffecd2" style="background: #ffecd2;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="settings-group">
+                                <h3>Bố cục</h3>
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <label>Sidebar thu gọn</label>
+                                        <p>Hiển thị sidebar ở chế độ thu gọn</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="compactSidebar">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <label>Hiển thị breadcrumb</label>
+                                        <p>Hiển thị đường dẫn điều hướng</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="showBreadcrumb" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="settings-section" id="notifications-section">
+                            <div class="section-header">
+                                <h2>Thông báo</h2>
+                                <p>Quản lý các loại thông báo và cách thức nhận thông báo</p>
+                            </div>
+                            
+                            <div class="settings-group">
+                                <h3>Thông báo Email</h3>
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <label>Nhiệm vụ mới</label>
+                                        <p>Nhận email khi có nhiệm vụ mới được giao</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="emailNewTasks" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <label>Deadline sắp tới</label>
+                                        <p>Nhận email nhắc nhở trước deadline</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="emailDeadlines" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <label>Báo cáo hàng tuần</label>
+                                        <p>Nhận báo cáo tổng kết hàng tuần</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="emailWeeklyReport">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="settings-group">
+                                <h3>Thông báo trình duyệt</h3>
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <label>Bật thông báo trình duyệt</label>
+                                        <p>Hiển thị thông báo desktop</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="browserNotifications">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <label>Âm thanh thông báo</label>
+                                        <p>Phát âm thanh khi có thông báo</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="notificationSound">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="settings-section" id="security-section">
+                            <div class="section-header">
+                                <h2>Bảo mật</h2>
+                                <p>Cấu hình các thiết lập bảo mật cho tài khoản</p>
+                            </div>
+                            
+                            <div class="settings-group">
+                                <h3>Phiên đăng nhập</h3>
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <label>Tự động đăng xuất</label>
+                                        <p>Thời gian tự động đăng xuất khi không hoạt động</p>
+                                    </div>
+                                    <select class="setting-select" id="autoLogoutSelect">
+                                        <option value="never">Không bao giờ</option>
+                                        <option value="15">15 phút</option>
+                                        <option value="30" selected>30 phút</option>
+                                        <option value="60">1 giờ</option>
+                                        <option value="120">2 giờ</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <label>Ghi nhớ đăng nhập</label>
+                                        <p>Cho phép ghi nhớ thông tin đăng nhập</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="rememberLogin" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="settings-group">
+                                <h3>Quyền truy cập</h3>
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <label>Yêu cầu xác thực khi xóa</label>
+                                        <p>Yêu cầu nhập mật khẩu khi xóa dữ liệu quan trọng</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="confirmDelete" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <label>Ghi log hoạt động</label>
+                                        <p>Lưu lại lịch sử các hoạt động của người dùng</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="activityLogging" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="settings-section" id="integrations-section">
+                            <div class="section-header">
+                                <h2>Tích hợp</h2>
+                                <p>Kết nối với các dịch vụ và ứng dụng khác</p>
+                            </div>
+                            
+                            <div class="settings-group">
+                                <h3>Dịch vụ đám mây</h3>
+                                <div class="integration-item">
+                                    <div class="integration-info">
+                                        <div class="integration-icon">
+                                            <i class="fab fa-google-drive"></i>
+                                        </div>
+                                        <div class="integration-details">
+                                            <h4>Google Drive</h4>
+                                            <p>Đồng bộ file và tài liệu</p>
+                                        </div>
+                                    </div>
+                                    <button class="btn-secondary" onclick="connectIntegration('google-drive')">Kết nối</button>
+                                </div>
+                                
+                                <div class="integration-item">
+                                    <div class="integration-info">
+                                        <div class="integration-icon">
+                                            <i class="fab fa-dropbox"></i>
+                                        </div>
+                                        <div class="integration-details">
+                                            <h4>Dropbox</h4>
+                                            <p>Lưu trữ và chia sẻ file</p>
+                                        </div>
+                                    </div>
+                                    <button class="btn-secondary" onclick="connectIntegration('dropbox')">Kết nối</button>
+                                </div>
+                            </div>
+                            
+                            <div class="settings-group">
+                                <h3>Công cụ giao tiếp</h3>
+                                <div class="integration-item">
+                                    <div class="integration-info">
+                                        <div class="integration-icon">
+                                            <i class="fab fa-slack"></i>
+                                        </div>
+                                        <div class="integration-details">
+                                            <h4>Slack</h4>
+                                            <p>Nhận thông báo qua Slack</p>
+                                        </div>
+                                    </div>
+                                    <button class="btn-secondary" onclick="connectIntegration('slack')">Kết nối</button>
+                                </div>
+                                
+                                <div class="integration-item">
+                                    <div class="integration-info">
+                                        <div class="integration-icon">
+                                            <i class="fab fa-microsoft"></i>
+                                        </div>
+                                        <div class="integration-details">
+                                            <h4>Microsoft Teams</h4>
+                                            <p>Tích hợp với Microsoft Teams</p>
+                                        </div>
+                                    </div>
+                                    <button class="btn-secondary" onclick="connectIntegration('teams')">Kết nối</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="settings-section" id="backup-section">
+                            <div class="section-header">
+                                <h2>Sao lưu & Khôi phục</h2>
+                                <p>Quản lý việc sao lưu và khôi phục dữ liệu</p>
+                            </div>
+                            
+                            <div class="settings-group">
+                                <h3>Sao lưu tự động</h3>
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <label>Bật sao lưu tự động</label>
+                                        <p>Tự động sao lưu dữ liệu định kỳ</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="autoBackup" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <label>Tần suất sao lưu</label>
+                                        <p>Chọn tần suất thực hiện sao lưu</p>
+                                    </div>
+                                    <select class="setting-select" id="backupFrequency">
+                                        <option value="daily" selected>Hàng ngày</option>
+                                        <option value="weekly">Hàng tuần</option>
+                                        <option value="monthly">Hàng tháng</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="settings-group">
+                                <h3>Thao tác thủ công</h3>
+                                <div class="backup-actions">
+                                    <div class="backup-action">
+                                        <div class="action-info">
+                                            <h4>Xuất dữ liệu</h4>
+                                            <p>Tải xuống toàn bộ dữ liệu của bạn</p>
+                                        </div>
+                                        <button class="btn-primary" onclick="exportData()">
+                                            <i class="fas fa-download"></i>
+                                            Xuất dữ liệu
+                                        </button>
+                                    </div>
+                                    
+                                    <div class="backup-action">
+                                        <div class="action-info">
+                                            <h4>Nhập dữ liệu</h4>
+                                            <p>Khôi phục dữ liệu từ file sao lưu</p>
+                                        </div>
+                                        <button class="btn-secondary" onclick="importData()">
+                                            <i class="fas fa-upload"></i>
+                                            Nhập dữ liệu
+                                        </button>
+                                    </div>
+                                    
+                                    <div class="backup-action">
+                                        <div class="action-info">
+                                            <h4>Xóa toàn bộ dữ liệu</h4>
+                                            <p>Xóa vĩnh viễn tất cả dữ liệu (không thể hoàn tác)</p>
+                                        </div>
+                                        <button class="btn-danger" onclick="clearAllData()">
+                                            <i class="fas fa-trash"></i>
+                                            Xóa dữ liệu
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="settings-section" id="about-section">
+                            <div class="section-header">
+                                <h2>Về Môi trường Á Châu</h2>
+                                <p>Thông tin về công ty</p>
+                            </div>
+                            
+                            <div class="settings-group">
+                                <div class="about-info">
+                                    <div class="app-logo">
+                                        <i class="fas fa-tasks"></i>
+                                        <h3>Môi Trường Á Châu</h3>
+                                    </div>
+                                    </div>
+                                    
+                                    <div class="app-description">
+                                        <p>Trong bối cảnh của ngành, Môi Trường Á Châu vinh dự đồng hành cùng Đơn vị, Cơ quan, Đối tác+,…, đóng góp mảnh ghép thúc đẩy sự phát triển kinh tế tuần hoàn và chung tay hướng tới mục tiêu cắt giảm phát thải khí nhà kính tại Việt Nam. Chuỗi hoạt động gia tăng giá trị của “Rác” bên trên cũng đã gián tiếp mở ra cơ hội và đóng góp một phần sinh kế bền vững đến nhóm người yếu thế, cũng như người lao động có việc làm trên chính quê hương.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="settings-group">
+                                <h3>Hỗ trợ</h3>
+                                <div class="support-links">
+                                    <a href="#" class="support-link">
+                                        <i class="fas fa-book"></i>
+                                        <span>Hướng dẫn sử dụng</span>
+                                    </a>
+                                    <a href="#" class="support-link">
+                                        <i class="fas fa-question-circle"></i>
+                                        <span>Câu hỏi thường gặp</span>
+                                    </a>
+                                    <a href="#" class="support-link">
+                                        <i class="fas fa-envelope"></i>
+                                        <span>Liên hệ hỗ trợ</span>
+                                    </a>
+                                    <a href="#" class="support-link">
+                                        <i class="fas fa-bug"></i>
+                                        <span>Báo lỗi</span>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="settings-group">
+                                <h3>Pháp lý</h3>
+                                <div class="legal-links">
+                                    <a href="#" class="legal-link">Điều khoản sử dụng</a>
+                                    <a href="#" class="legal-link">Chính sách bảo mật</a>
+                                    <a href="#" class="legal-link">Giấy phép</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div class="modal" id="importModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Nhập dữ liệu</h3>
+                <button class="modal-close" onclick="closeImportModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="import-area">
+                    <i class="fas fa-file-import"></i>
+                    <p>Chọn file sao lưu để khôi phục dữ liệu</p>
+                    <input type="file" id="importFileInput" accept=".json" style="display: none;">
+                    <button class="btn-secondary" onclick="document.getElementById('importFileInput').click()">
+                        Chọn file
+                    </button>
+                </div>
+                <div class="import-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p>Việc nhập dữ liệu sẽ ghi đè lên dữ liệu hiện tại. Hãy đảm bảo bạn đã sao lưu dữ liệu trước khi thực hiện.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeImportModal()">Hủy</button>
+                <button class="btn-primary" onclick="processImport()" id="importBtn" disabled>Nhập dữ liệu</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="assets/js/settings.js"></script>
+    <script src="assets/js/sidebar.js"></script>
+</body>
+</html>

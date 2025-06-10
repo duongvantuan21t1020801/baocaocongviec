@@ -1,6 +1,5 @@
-// Mock API sử dụng localStorage
 const mockApi = {
-    // Khởi tạo dữ liệu mẫu nếu chưa có
+
     init: function() {
       if (!localStorage.getItem('tasks')) {
         localStorage.setItem('tasks', JSON.stringify(initialData.tasks));
@@ -25,22 +24,22 @@ const mockApi = {
       }
     },
   
-    // Lấy tất cả dữ liệu của một loại
+
     getAll: function(type) {
       const data = localStorage.getItem(type);
       return data ? JSON.parse(data) : [];
     },
   
-    // Lấy một mục theo ID
+   
     getById: function(type, id) {
       const items = this.getAll(type);
       return items.find(item => item.id === id);
     },
   
-    // Thêm mục mới
+    
     add: function(type, item) {
       const items = this.getAll(type);
-      // Tạo ID mới
+    
       const newId = items.length > 0 ? Math.max(...items.map(i => i.id)) + 1 : 1;
       const newItem = { ...item, id: newId, createdAt: new Date().toISOString() };
       items.push(newItem);
@@ -48,7 +47,7 @@ const mockApi = {
       return newItem;
     },
   
-    // Cập nhật mục
+    
     update: function(type, id, updates) {
       const items = this.getAll(type);
       const index = items.findIndex(item => item.id === id);
@@ -64,7 +63,7 @@ const mockApi = {
       return null;
     },
   
-    // Xóa mục
+  
     delete: function(type, id) {
       const items = this.getAll(type);
       const filteredItems = items.filter(item => item.id !== id);

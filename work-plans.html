@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kế hoạch công việc</title>
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="assets/css/work-plans.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-page">
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="fas fa-tasks"></i>
+                    Môi trường Á Châu
+                </div>
+                <div class="sidebar-user">
+                    <img src="assets/icon/avatar.jpg" 
+                         alt="User Avatar" class="sidebar-avatar" id="sidebarAvatar">
+                    <div class="sidebar-user-info">
+                        <h4 id="sidebarUserName">Người dùng</h4>
+                        <p id="sidebarUserRole">Vai trò</p>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="work-plans.html" class="nav-item active">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>Kế hoạch công việc</span>
+                </a>
+                <a href="daily-logs.html" class="nav-item">
+                    <i class="fas fa-book"></i>
+                    <span>Nhật ký công việc</span>
+                </a>
+                <a href="reports.html" class="nav-item">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Báo cáo</span>
+                </a>
+                <a href="team-management.html" class="nav-item">
+                    <i class="fas fa-users"></i>
+                    <span>Quản lý nhóm</span>
+                </a>
+                <a href="profile.html" class="nav-item">
+                    <i class="fas fa-user"></i>
+                    <span>Hồ sơ cá nhân</span>
+                </a>
+                <a href="settings.html" class="nav-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Cài đặt</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Đăng xuất</span>
+                </button>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header class="header">
+                <div class="header-left">
+                    <button class="sidebar-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="page-title">Kế hoạch công việc</h1>
+                </div>
+                <div class="header-right">
+                    <div class="header-search">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Tìm kiếm...">
+                        </div>
+                    </div>
+                    
+                    <div class="header-actions">
+                        <button class="notification-btn">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge">3</span>
+                        </button>
+                        
+                        <div class="user-menu">
+                            <div class="user-avatar">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="User">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div class="tab-content active" id="dashboard">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>12</h3>
+                            <p>Kế hoạch đang thực hiện</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>8</h3>
+                            <p>Kế hoạch hoàn thành</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>25</h3>
+                            <p>Nhân sự tham gia</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>156</h3>
+                            <p>Nhật ký hôm nay</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="chart-card">
+                        <h3>Tiến độ kế hoạch</h3>
+                        <div class="progress-list">
+                            <div class="progress-item">
+                                <span>Dự án Website</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 75%"></div>
+                                </div>
+                                <span>75%</span>
+                            </div>
+                            <div class="progress-item">
+                                <span>Ứng dụng Mobile</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 45%"></div>
+                                </div>
+                                <span>45%</span>
+                            </div>
+                            <div class="progress-item">
+                                <span>Hệ thống CRM</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 90%"></div>
+                                </div>
+                                <span>90%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recent-activities">
+                        <h3>Hoạt động gần đây</h3>
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <p><strong>Nguyễn Văn B</strong> đã tạo kế hoạch mới</p>
+                                    <span>2 giờ trước</span>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-edit"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <p><strong>Trần Thị C</strong> đã cập nhật nhật ký</p>
+                                    <span>4 giờ trước</span>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <p><strong>Lê Văn D</strong> đã hoàn thành nhiệm vụ</p>
+                                    <span>6 giờ trước</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content" id="plans">
+                <div class="content-header">
+                    <h2>Kế hoạch công việc</h2>
+                    <button class="btn-primary" onclick="openPlanModal()">
+                        <i class="fas fa-plus"></i>
+                        Tạo kế hoạch mới
+                    </button>
+                </div>
+
+                <div class="plans-grid">
+                    <div class="plan-card">
+                        <div class="plan-header">
+                            <h3>Dự án Website Công ty</h3>
+                            <span class="status-badge in-progress">Đang thực hiện</span>
+                        </div>
+                        <p class="plan-description">Phát triển website công ty với đầy đủ tính năng quản lý và báo cáo</p>
+                        <div class="plan-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 75%"></div>
+                            </div>
+                            <span>75% hoàn thành</span>
+                        </div>
+                        <div class="plan-team">
+                            <div class="team-avatars">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face" alt="Member">
+                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=32&h=32&fit=crop&crop=face" alt="Member">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&h=32&fit=crop&crop=face" alt="Member">
+                                <span class="team-count">+2</span>
+                            </div>
+                            <span class="deadline">Hạn: 15/12/2024</span>
+                        </div>
+                        <div class="plan-actions">
+                            <button class="btn-secondary" onclick="viewPlanDetails(1)">Xem chi tiết</button>
+                            <button class="btn-primary" onclick="updateProgress(1)">Cập nhật tiến độ</button>
+                        </div>
+                    </div>
+
+                    <div class="plan-card">
+                        <div class="plan-header">
+                            <h3>Ứng dụng Mobile</h3>
+                            <span class="status-badge planning">Lên kế hoạch</span>
+                        </div>
+                        <p class="plan-description">Phát triển ứng dụng mobile cho khách hàng với tính năng đặt hàng online</p>
+                        <div class="plan-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 25%"></div>
+                            </div>
+                            <span>25% hoàn thành</span>
+                        </div>
+                        <div class="plan-team">
+                            <div class="team-avatars">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face" alt="Member">
+                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=32&h=32&fit=crop&crop=face" alt="Member">
+                                <span class="team-count">+3</span>
+                            </div>
+                            <span class="deadline">Hạn: 20/01/2025</span>
+                        </div>
+                        <div class="plan-actions">
+                            <button class="btn-secondary" onclick="viewPlanDetails(2)">Xem chi tiết</button>
+                            <button class="btn-primary" onclick="updateProgress(2)">Cập nhật tiến độ</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content" id="diary">
+                <div class="content-header">
+                    <h2>Nhật ký công việc hàng ngày</h2>
+                    <button class="btn-primary" onclick="openDiaryModal()">
+                        <i class="fas fa-plus"></i>
+                        Thêm nhật ký
+                    </button>
+                </div>
+
+                <div class="diary-container">
+                    <div class="diary-filters">
+                        <input type="date" class="date-filter" value="2024-12-10">
+                        <select class="filter-select">
+                            <option>Tất cả nhân sự</option>
+                            <option>Nguyễn Văn A</option>
+                            <option>Trần Thị B</option>
+                            <option>Lê Văn C</option>
+                        </select>
+                    </div>
+
+                    <div class="diary-timeline">
+                        <div class="diary-entry">
+                            <div class="diary-time">09:00</div>
+                            <div class="diary-content">
+                                <div class="diary-header">
+                                    <h4>Họp team phát triển</h4>
+                                    <span class="diary-author">Nguyễn Văn A</span>
+                                </div>
+                                <p>Thảo luận về tiến độ dự án website, phân công nhiệm vụ tuần này. Cần tập trung vào module thanh toán và tối ưu hiệu suất.</p>
+                                <div class="diary-tags">
+                                    <span class="tag">Họp</span>
+                                    <span class="tag">Dự án Website</span>
+                                </div>
+                                <div class="diary-actions">
+                                    <button class="btn-comment" onclick="toggleComments(1)">
+                                        <i class="fas fa-comment"></i> 3 bình luận
+                                    </button>
+                                    <span class="diary-date">10/12/2024</span>
+                                </div>
+                                <div class="comments-section" id="comments-1" style="display: none;">
+                                    <div class="comment">
+                                        <strong>Trần Thị B:</strong> Cần bổ sung thêm test case cho module thanh toán
+                                    </div>
+                                    <div class="comment">
+                                        <strong>Lê Văn C:</strong> Đã hoàn thành phần tối ưu database
+                                    </div>
+                                    <div class="add-comment">
+                                        <input type="text" placeholder="Thêm bình luận...">
+                                        <button class="btn-send"><i class="fas fa-paper-plane"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="diary-entry">
+                            <div class="diary-time">14:30</div>
+                            <div class="diary-content">
+                                <div class="diary-header">
+                                    <h4>Trao đổi với khách hàng</h4>
+                                    <span class="diary-author">Trần Thị B</span>
+                                </div>
+                                <p>Gặp khách hàng để thảo luận về yêu cầu mới cho ứng dụng mobile. Khách hàng muốn thêm tính năng chat và notification push.</p>
+                                <div class="diary-tags">
+                                    <span class="tag">Khách hàng</span>
+                                    <span class="tag">Ứng dụng Mobile</span>
+                                </div>
+                                <div class="diary-actions">
+                                    <button class="btn-comment" onclick="toggleComments(2)">
+                                        <i class="fas fa-comment"></i> 1 bình luận
+                                    </button>
+                                    <span class="diary-date">10/12/2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content" id="reports">
+                <div class="content-header">
+                    <h2>Báo cáo</h2>
+                    <div class="report-filters">
+                        <select class="filter-select">
+                            <option>Tuần này</option>
+                            <option>Tháng này</option>
+                            <option>Quý này</option>
+                        </select>
+                        <button class="btn-primary">
+                            <i class="fas fa-download"></i>
+                            Xuất báo cáo
+                        </button>
+                    </div>
+                </div>
+
+                <div class="reports-grid">
+                    <div class="report-card">
+                        <h3>Hiệu suất nhân sự</h3>
+                        <div class="performance-list">
+                            <div class="performance-item">
+                                <div class="employee-info">
+                                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="Employee">
+                                    <span>Nguyễn Văn A</span>
+                                </div>
+                                <div class="performance-score">
+                                    <span class="score">95%</span>
+                                    <div class="score-bar">
+                                        <div class="score-fill" style="width: 95%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="performance-item">
+                                <div class="employee-info">
+                                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face" alt="Employee">
+                                    <span>Trần Thị B</span>
+                                </div>
+                                <div class="performance-score">
+                                    <span class="score">88%</span>
+                                    <div class="score-bar">
+                                        <div class="score-fill" style="width: 88%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="report-card">
+                        <h3>Tiến độ kế hoạch</h3>
+                        <div class="plan-summary">
+                            <div class="summary-item">
+                                <span class="label">Hoàn thành đúng hạn</span>
+                                <span class="value">8/10</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="label">Đang thực hiện</span>
+                                <span class="value">12</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="label">Trễ hạn</span>
+                                <span class="value">2</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content" id="team">
+                <div class="content-header">
+                    <h2>Quản lý nhân sự</h2>
+                    <button class="btn-primary" onclick="openTeamModal()">
+                        <i class="fas fa-user-plus"></i>
+                        Thêm nhân sự
+                    </button>
+                </div>
+
+                <div class="team-grid">
+                    <div class="team-member-card">
+                        <div class="member-avatar">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face" alt="Member">
+                        </div>
+                        <div class="member-info">
+                            <h3>Nguyễn Văn A</h3>
+                            <p>Team Leader</p>
+                            <div class="member-stats">
+                                <span>5 kế hoạch</span>
+                                <span>95% hiệu suất</span>
+                            </div>
+                        </div>
+                        <div class="member-actions">
+                            <button class="btn-secondary">Xem chi tiết</button>
+                        </div>
+                    </div>
+
+                    <div class="team-member-card">
+                        <div class="member-avatar">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=80&h=80&fit=crop&crop=face" alt="Member">
+                        </div>
+                        <div class="member-info">
+                            <h3>Trần Thị B</h3>
+                            <p>Frontend Developer</p>
+                            <div class="member-stats">
+                                <span>3 kế hoạch</span>
+                                <span>88% hiệu suất</span>
+                            </div>
+                        </div>
+                        <div class="member-actions">
+                            <button class="btn-secondary">Xem chi tiết</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal" id="planModal">
+            <div class="modal-header">
+                <h3>Tạo kế hoạch mới</h3>
+                <button class="modal-close" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="plan-form">
+                    <div class="form-group">
+                        <label>Tên kế hoạch</label>
+                        <input type="text" placeholder="Nhập tên kế hoạch">
+                    </div>
+                    <div class="form-group">
+                        <label>Mô tả</label>
+                        <textarea placeholder="Mô tả chi tiết kế hoạch"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Ngày bắt đầu</label>
+                            <input type="date">
+                        </div>
+                        <div class="form-group">
+                            <label>Ngày kết thúc</label>
+                            <input type="date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Nhân sự tham gia</label>
+                        <select multiple>
+                            <option>Nguyễn Văn A</option>
+                            <option>Trần Thị B</option>
+                            <option>Lê Văn C</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal()">Hủy</button>
+                <button class="btn-primary">Tạo kế hoạch</button>
+            </div>
+        </div>
+
+        <div class="modal" id="diaryModal">
+            <div class="modal-header">
+                <h3>Thêm nhật ký công việc</h3>
+                <button class="modal-close" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="diary-form">
+                    <div class="form-group">
+                        <label>Tiêu đề</label>
+                        <input type="text" placeholder="Nhập tiêu đề công việc">
+                    </div>
+                    <div class="form-group">
+                        <label>Nội dung</label>
+                        <textarea placeholder="Mô tả chi tiết công việc, trao đổi, ghi chú..."></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Thời gian</label>
+                            <input type="time">
+                        </div>
+                        <div class="form-group">
+                            <label>Ngày</label>
+                            <input type="date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Tags</label>
+                        <input type="text" placeholder="Nhập tags (phân cách bằng dấu phẩy)">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal()">Hủy</button>
+                <button class="btn-primary">Lưu nhật ký</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+    <script>
+        if (!localStorage.getItem('currentUser') || localStorage.getItem('isLoggedIn') !== 'true') {
+            window.location.href = 'login.html';
+        }
+    </script>
+    <script src="assets/js/sidebar.js"></script>
+</body>
+</html>

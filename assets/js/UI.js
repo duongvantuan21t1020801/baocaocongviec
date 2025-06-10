@@ -1,6 +1,6 @@
-// Module quản lý UI
+
 const UIModule = (function() {
-  // Khởi tạo hiệu ứng cho các card
+
   function initCardEffects() {
     const cards = document.querySelectorAll('.stat-card, .overview-card, .report-card');
     
@@ -17,13 +17,12 @@ const UIModule = (function() {
     });
   }
   
-  // Khởi tạo hiệu ứng cho các nút
+
   function initButtonEffects() {
     const buttons = document.querySelectorAll('.btn, button');
     
     buttons.forEach(button => {
       button.addEventListener('click', function(e) {
-        // Hiệu ứng ripple
         const ripple = document.createElement('span');
         ripple.classList.add('ripple');
         this.appendChild(ripple);
@@ -42,12 +41,12 @@ const UIModule = (function() {
     });
   }
   
-  // Render bảng công việc
+
   function renderWorkTable(data) {
     const table = document.getElementById('work-table');
     if (!table) return;
     
-    // Tạo header
+  
     let html = `
       <thead>
         <tr>
@@ -61,7 +60,6 @@ const UIModule = (function() {
       <tbody>
     `;
     
-    // Tạo các dòng dữ liệu
     data.forEach(item => {
       let statusClass = '';
       

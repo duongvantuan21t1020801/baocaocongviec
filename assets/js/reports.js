@@ -1,9 +1,7 @@
-// Module quản lý báo cáo kế hoạch công việc
+
 const ReportsModule = (function() {
-  // Private variables
   let reports = [];
   
-  // Private functions
   function formatDate(date) {
     const d = new Date(date);
     const day = String(d.getDate()).padStart(2, '0');
@@ -12,9 +10,7 @@ const ReportsModule = (function() {
     return `${day}/${month}/${year}`;
   }
   
-  // Public API
   return {
-    // Lấy báo cáo theo khoảng thời gian
     getReports: function(reportType, startDate, endDate) {
       if (startDate && endDate) {
         let filteredReports = reports;
@@ -36,18 +32,16 @@ const ReportsModule = (function() {
       return reports;
     },
     
-    // Thêm báo cáo mới
     addReport: function(reportType, reportData) {
       const report = {
         ...reportData,
-        type: reportType || 'daily', // Thêm loại báo cáo
+        type: reportType || 'daily', 
         id: Date.now(),
         createdAt: new Date().toISOString()
       };
       
       reports.push(report);
       
-      // Lưu vào localStorage
       this.saveReports();
       return report;
     },

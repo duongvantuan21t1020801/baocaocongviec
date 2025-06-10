@@ -1,8 +1,6 @@
-// Module quản lý giao diện báo cáo
 const ReportUIModule = (function() {
     return {
         showNotification: function(message, type) {
-          // Tạo thông báo
           const notification = document.createElement('div');
           notification.className = `notification ${type}`;
           notification.innerHTML = `
@@ -11,16 +9,12 @@ const ReportUIModule = (function() {
               <button class="notification-close">&times;</button>
             </div>
           `;
-          
-          // Thêm vào DOM
+        
           document.body.appendChild(notification);
-          
-          // Hiển thị thông báo
           setTimeout(() => {
             notification.classList.add('show');
           }, 10);
           
-          // Tự động ẩn sau 3 giây
           setTimeout(() => {
             notification.classList.remove('show');
             setTimeout(() => {
@@ -28,7 +22,6 @@ const ReportUIModule = (function() {
             }, 300);
           }, 3000);
           
-          // Xử lý sự kiện đóng
           const closeButton = notification.querySelector('.notification-close');
           closeButton.addEventListener('click', () => {
             notification.classList.remove('show');
@@ -40,10 +33,9 @@ const ReportUIModule = (function() {
       };
     })();
     
-      let currentReportType = 'daily'; // Loại báo cáo mặc định
-let currentView = 'list'; // Chế độ xem mặc định
+      let currentReportType = 'daily'; 
+let currentView = 'list'; 
 let currentReportId = null;
-    // Private functions
     function formatDate(dateString) {
       const date = new Date(dateString);
       const day = String(date.getDate()).padStart(2, '0');

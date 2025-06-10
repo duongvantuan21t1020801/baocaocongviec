@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhật ký công việc</title>
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="assets/css/daily-logs.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-page">
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="fas fa-tasks"></i>
+                    Môi trường Á Châu
+                </div>
+                <div class="sidebar-user">
+                    <img src="assets/icon/avatar.jpg" 
+                         alt="User Avatar" class="sidebar-avatar" id="sidebarAvatar">
+                    <div class="sidebar-user-info">
+                        <h4 id="sidebarUserName">Người dùng</h4>
+                        <p id="sidebarUserRole">Vai trò</p>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="work-plans.html" class="nav-item">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>Kế hoạch công việc</span>
+                </a>
+                <a href="daily-logs.html" class="nav-item active">
+                    <i class="fas fa-book"></i>
+                    <span>Nhật ký công việc</span>
+                </a>
+                <a href="reports.html" class="nav-item">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Báo cáo</span>
+                </a>
+                <a href="team-management.html" class="nav-item">
+                    <i class="fas fa-users"></i>
+                    <span>Quản lý nhóm</span>
+                </a>
+                <a href="profile.html" class="nav-item">
+                    <i class="fas fa-user"></i>
+                    <span>Hồ sơ cá nhân</span>
+                </a>
+                <a href="settings.html" class="nav-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Cài đặt</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Đăng xuất</span>
+                </button>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header class="header">
+                <div class="header-left">
+                    <button class="sidebar-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="page-title">Nhật ký công việc</h1>
+                </div>
+                
+                <div class="header-right">
+                    <div class="header-search">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Tìm kiếm...">
+                        </div>
+                    </div>
+                    
+                    <div class="header-actions">
+                        <button class="notification-btn">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge">3</span>
+                        </button>
+                        
+                        <div class="user-menu">
+                            <div class="user-avatar">
+                                <img src="assets/icon/avatar.jpg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <div class="content-area">
+                <div class="page-header">
+                    <h2>Nhật ký công việc hàng ngày</h2>
+                    <button class="btn-primary" onclick="openAddLogModal()">
+                        <i class="fas fa-plus"></i>
+                        Thêm nhật ký
+                    </button>
+                </div>
+                
+                <div class="logs-tabs">
+                    <button class="tab-btn active" onclick="switchTab('work')">
+                        <i class="fas fa-briefcase"></i>
+                        Nhật ký công việc
+                    </button>
+                    <button class="tab-btn" onclick="switchTab('personal')">
+                        <i class="fas fa-book"></i>
+                        Nhật ký cá nhân
+                    </button>
+                </div>
+                
+                <div class="logs-container" id="workLogsContainer">
+                    <div class="logs-filters">
+                        <div class="filter-group">
+                            <label>Từ ngày:</label>
+                            <input type="date" id="fromDate">
+                        </div>
+                        <div class="filter-group">
+                            <label>Đến ngày:</label>
+                            <input type="date" id="toDate">
+                        </div>
+                        <div class="filter-group">
+                            <label>Loại:</label>
+                            <select id="logType">
+                                <option value="">Tất cả</option>
+                                <option value="meeting">Họp</option>
+                                <option value="task">Công việc</option>
+                                <option value="note">Ghi chú</option>
+                            </select>
+                        </div>
+                        <button class="btn-secondary" onclick="filterLogs()">
+                            <i class="fas fa-filter"></i>
+                            Lọc
+                        </button>
+                    </div>
+                    
+                    <div class="logs-list" id="logsList">
+                        <div class="log-entry">
+                            <div class="log-header">
+                                <div class="log-date">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>15/12/2024</span>
+                                </div>
+                                <div class="log-time">
+                                    <i class="fas fa-clock"></i>
+                                    <span>09:30</span>
+                                </div>
+                                <div class="log-type meeting">
+                                    <i class="fas fa-users"></i>
+                                    Họp
+                                </div>
+                            </div>
+                            <div class="log-content">
+                                <h4>Họp team weekly</h4>
+                                <p>Thảo luận về tiến độ dự án, phân công công việc tuần tới. Cần hoàn thành module đăng nhập trước thứ 6.</p>
+                                <div class="log-tags">
+                                    <span class="tag">meeting</span>
+                                    <span class="tag">weekly</span>
+                                    <span class="tag">project</span>
+                                </div>
+                            </div>
+                            <div class="log-actions">
+                                <button class="btn-edit" onclick="editLog(1)">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-delete" onclick="deleteLog(1)">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="log-entry">
+                            <div class="log-header">
+                                <div class="log-date">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>15/12/2024</span>
+                                </div>
+                                <div class="log-time">
+                                    <i class="fas fa-clock"></i>
+                                    <span>14:00</span>
+                                </div>
+                                <div class="log-type task">
+                                    <i class="fas fa-tasks"></i>
+                                    Công việc
+                                </div>
+                            </div>
+                            <div class="log-content">
+                                <h4>Hoàn thành giao diện đăng nhập</h4>
+                                <p>Đã hoàn thành thiết kế và code giao diện đăng nhập, bao gồm validation form và responsive design.</p>
+                                <div class="log-tags">
+                                    <span class="tag">frontend</span>
+                                    <span class="tag">login</span>
+                                    <span class="tag">completed</span>
+                                </div>
+                            </div>
+                            <div class="log-actions">
+                                <button class="btn-edit" onclick="editLog(2)">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-delete" onclick="deleteLog(2)">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="logs-container" id="personalLogsContainer" style="display: none;">
+                <div class="logs-filters">
+                    <div class="filter-group">
+                        <label>Từ ngày:</label>
+                        <input type="date" id="personalFromDate">
+                    </div>
+                    <div class="filter-group">
+                        <label>Đến ngày:</label>
+                        <input type="date" id="personalToDate">
+                    </div>
+                    <div class="filter-group">
+                        <label>Tâm trạng:</label>
+                        <select id="moodFilter">
+                            <option value="">Tất cả</option>
+                            <option value="happy">Vui vẻ</option>
+                            <option value="normal">Bình thường</option>
+                            <option value="sad">Buồn</option>
+                            <option value="excited">Phấn khích</option>
+                            <option value="tired">Mệt mỏi</option>
+                        </select>
+                    </div>
+                    <button class="btn-secondary" onclick="filterPersonalLogs()">
+                        <i class="fas fa-filter"></i>
+                        Lọc
+                    </button>
+                </div>
+                
+                <div class="personal-logs-list" id="personalLogsList">
+                    <div class="personal-log-entry">
+                        <div class="log-header">
+                            <div class="log-date">
+                                <i class="fas fa-calendar"></i>
+                                <span>15/12/2024</span>
+                            </div>
+                            <div class="log-time">
+                                <i class="fas fa-clock"></i>
+                                <span>20:30</span>
+                            </div>
+                            <div class="log-mood happy">
+                                <i class="fas fa-smile"></i>
+                                Vui vẻ
+                            </div>
+                        </div>
+                        <div class="log-content">
+                            <h4>Một ngày tuyệt vời</h4>
+                            <p>Hôm nay là một ngày thật tuyệt vời. Tôi đã hoàn thành nhiều công việc và có thời gian thư giãn với gia đình.</p>
+                            <div class="log-tags">
+                                <span class="tag">hạnh phúc</span>
+                                <span class="tag">gia đình</span>
+                                <span class="tag">thành tựu</span>
+                            </div>
+                        </div>
+                        <div class="log-actions">
+                            <button class="btn-edit" onclick="editPersonalLog(1)">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn-delete" onclick="deletePersonalLog(1)">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="add-log-container">
+                    <button class="btn-primary" onclick="openAddPersonalLogModal()">
+                        <i class="fas fa-plus"></i>
+                        Thêm nhật ký cá nhân
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div class="modal" id="addLogModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Thêm nhật ký công việc</h3>
+                <button class="modal-close" onclick="closeAddLogModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="log-form" id="logForm">
+                    <div class="form-group">
+                        <label>Tiêu đề *</label>
+                        <input type="text" id="logTitle" placeholder="Nhập tiêu đề công việc" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Nội dung *</label>
+                        <textarea id="logContent" placeholder="Mô tả chi tiết công việc, trao đổi, ghi chú..." required></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Ngày *</label>
+                            <input type="date" id="logDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Thời gian *</label>
+                            <input type="time" id="logTime" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Loại công việc *</label>
+                        <select id="logTypeSelect" required>
+                            <option value="">Chọn loại</option>
+                            <option value="meeting">Họp</option>
+                            <option value="task">Công việc</option>
+                            <option value="note">Ghi chú</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Tags</label>
+                        <input type="text" id="logTags" placeholder="Nhập tags (phân cách bằng dấu phẩy)">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeAddLogModal()">Hủy</button>
+                <button class="btn-primary" onclick="saveLog()">Lưu nhật ký</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="addPersonalLogModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Thêm nhật ký cá nhân</h3>
+                <button class="modal-close" onclick="closeAddPersonalLogModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="log-form" id="personalLogForm">
+                    <div class="form-group">
+                        <label>Tiêu đề *</label>
+                        <input type="text" id="personalLogTitle" placeholder="Nhập tiêu đề nhật ký" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Nội dung *</label>
+                        <textarea id="personalLogContent" placeholder="Viết cảm nghĩ, suy nghĩ, kỷ niệm của bạn..." required></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Ngày *</label>
+                            <input type="date" id="personalLogDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Thời gian *</label>
+                            <input type="time" id="personalLogTime" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Tâm trạng *</label>
+                        <select id="personalLogMood" required>
+                            <option value="">Chọn tâm trạng</option>
+                            <option value="happy">Vui vẻ</option>
+                            <option value="normal">Bình thường</option>
+                            <option value="sad">Buồn</option>
+                            <option value="excited">Phấn khích</option>
+                            <option value="tired">Mệt mỏi</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Hình ảnh</label>
+                        <input type="file" id="personalLogImage" accept="image/*">
+                    </div>
+                    <div class="form-group">
+                        <label>Tags</label>
+                        <input type="text" id="personalLogTags" placeholder="Nhập tags (phân cách bằng dấu phẩy)">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeAddPersonalLogModal()">Hủy</button>
+                <button class="btn-primary" onclick="savePersonalLog()">Lưu nhật ký</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        if (!localStorage.getItem('currentUser') || localStorage.getItem('isLoggedIn') !== 'true') {
+            window.location.href = 'login.html';
+        }
+        const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+        document.getElementById('sidebarUserName').textContent = currentUser.fullName || 'Người dùng';
+        document.getElementById('sidebarUserRole').textContent = currentUser.role || 'Nhân viên';
+        function openAddLogModal() {
+            document.getElementById('addLogModal').style.display = 'flex';
+            const now = new Date();
+            document.getElementById('logDate').value = now.toISOString().split('T')[0];
+            document.getElementById('logTime').value = now.toTimeString().slice(0, 5);
+        }
+        
+        function closeAddLogModal() {
+            document.getElementById('addLogModal').style.display = 'none';
+            document.getElementById('logForm').reset();
+        }
+        
+        function saveLog() {
+            const form = document.getElementById('logForm');
+            if (form.checkValidity()) {
+                alert('Nhật ký đã được lưu thành công!');
+                closeAddLogModal();
+                loadLogs();
+            } else {
+                alert('Vui lòng điền đầy đủ thông tin bắt buộc!');
+            }
+        }
+        
+        function editLog(id) {
+            alert('Chức năng chỉnh sửa đang được phát triển');
+        }
+        
+        function deleteLog(id) {
+            if (confirm('Bạn có chắc chắn muốn xóa nhật ký này?')) {
+                alert('Nhật ký đã được xóa');
+            }
+        }
+        
+        function filterLogs() {
+            alert('Chức năng lọc đang được phát triển');
+        }
+        
+        function loadLogs() {
+            console.log('Loading logs...');
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            loadLogs();
+        });
+    </script>
+    <script src="assets/js/sidebar.js"></script>
+    <script src="assets/js/dai"></script>
+</body>
+</html>

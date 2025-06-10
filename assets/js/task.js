@@ -1,4 +1,4 @@
-// Trang công việc đang thực hiện
+
 function renderTasksPage() {
     return `
       <div class="tasks-container">
@@ -25,7 +25,7 @@ function renderTasksPage() {
     `;
   }
   
-  // Hiển thị tất cả công việc
+
   function renderAllTasks() {
     const tasks = getAllTasks();
     
@@ -59,16 +59,16 @@ function renderTasksPage() {
     `).join('');
   }
   
-  // Lấy tất cả công việc
+  
   function getAllTasks() {
-    // Kiểm tra xem có dữ liệu trong localStorage không
+    
     const storedTasks = localStorage.getItem('allTasks');
     
     if (storedTasks) {
       return JSON.parse(storedTasks);
     }
     
-    // Nếu không có, sử dụng dữ liệu mẫu và lưu vào localStorage
+    
     const sampleTasks = [
       {
         id: 1,

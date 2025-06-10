@@ -1,41 +1,40 @@
-// Module quản lý UI
 const UIModule = (function() {
-    // Các biến DOM
+ 
     let sidebar, toggleBtn, overlay, navItems, topbarTitle;
     let dashboardContent = null;
     let workContent = null;
   
-    // Khởi tạo UI
+   
     function init() {
       console.log('Khởi tạo UI...');
       
-      // Lấy các phần tử DOM
+      
       sidebar = document.querySelector(".sidebar");
       toggleBtn = document.getElementById("sidebarToggle");
       navItems = document.querySelectorAll('#menu-list li');
       topbarTitle = document.getElementById('topbar-title');
   
-      // Tạo overlay
+      
       overlay = document.createElement('div');
       overlay.classList.add('overlay');
       document.body.appendChild(overlay);
   
-      // Khởi tạo sự kiện
+      
       initEvents();
   
-      // Lưu trữ nội dung trang chủ
+      
       if (document.querySelector('.main-panel')) {
         dashboardContent = document.querySelector('.main-panel').innerHTML;
       }
   
-      // Xử lý responsive layout
+      
       handleResponsiveLayout();
       window.addEventListener('resize', handleResponsiveLayout);
     }
   
-    // Khởi tạo các sự kiện
+   
     function initEvents() {
-      // Sự kiện cho menu
+      
       navItems.forEach(item => {
         item.addEventListener('click', function () {
           navItems.forEach(i => i.classList.remove('active'));
@@ -46,17 +45,17 @@ const UIModule = (function() {
         });
       });
   
-      // Sự kiện cho sidebar toggle
+    
       if (toggleBtn) {
         toggleBtn.addEventListener("click", () => {
           sidebar.classList.contains('active') ? closeSidebar() : openSidebar();
         });
       }
   
-      // Sự kiện cho overlay
+      
       overlay.addEventListener('click', closeSidebar);
   
-      // Sự kiện click bên ngoài sidebar
+      
       document.addEventListener('click', function(e) {
         if (!sidebar.contains(e.target) && 
             !toggleBtn.contains(e.target) && 
@@ -65,7 +64,7 @@ const UIModule = (function() {
         }
       });
   
-      // Sự kiện cho các project card
+  
       const projectCards = document.querySelectorAll('.project-card');
       projectCards.forEach(card => {
         card.addEventListener('mouseenter', function () {
@@ -80,7 +79,7 @@ const UIModule = (function() {
       });
     }
   
-    // Đóng sidebar
+
     function closeSidebar() {
       sidebar.classList.remove('active');
       overlay.style.display = 'none';

@@ -1,9 +1,7 @@
-// Module quản lý nhật ký công việc
+
 const JournalsModule = (function() {
-    // Private variables
+
     let journals = [];
-    
-    // Private functions
     function formatDate(date) {
       const d = new Date(date);
       const day = String(d.getDate()).padStart(2, '0');
@@ -12,9 +10,9 @@ const JournalsModule = (function() {
       return `${day}/${month}/${year}`;
     }
     
-    // Public API
+    
     return {
-      // Lấy nhật ký theo khoảng thời gian
+      
       getJournals: function(startDate, endDate) {
         if (startDate && endDate) {
           const start = new Date(startDate);
@@ -28,7 +26,7 @@ const JournalsModule = (function() {
         return journals;
       },
       
-      // Thêm nhật ký mới
+    
       addJournal: function(journalData) {
         const journal = {
           ...journalData,
@@ -38,23 +36,23 @@ const JournalsModule = (function() {
         
         journals.push(journal);
         
-        // Lưu vào localStorage
+     
         this.saveJournals();
         return journal;
       },
       
-      // Lưu nhật ký vào localStorage
+      
       saveJournals: function() {
         localStorage.setItem('journals', JSON.stringify(journals));
       },
       
-      // Tải nhật ký từ localStorage
+     
       loadJournals: function() {
         const storedJournals = localStorage.getItem('journals');
         if (storedJournals) journals = JSON.parse(storedJournals);
       },
       
-      // Tạo nhật ký mẫu
+     
       generateSampleJournals: function() {
         journals = [
           {
@@ -88,19 +86,19 @@ const JournalsModule = (function() {
         this.saveJournals();
       },
       
-      // Cập nhật nhật ký
+    
       updateJournal: function(id, updatedData) {
         const index = journals.findIndex(journal => journal.id === id);
         
         if (index !== -1) {
-          // Cập nhật thông tin nhật ký
+         
           journals[index] = {
             ...journals[index],
             ...updatedData,
             updatedAt: new Date().toISOString()
           };
           
-          // Lưu vào localStorage
+         
           this.saveJournals();
           
           return {
@@ -116,7 +114,7 @@ const JournalsModule = (function() {
         };
       },
       
-      // Xóa nhật ký
+     
       deleteJournal: function(id) {
         const index = journals.findIndex(journal => journal.id === id);
         

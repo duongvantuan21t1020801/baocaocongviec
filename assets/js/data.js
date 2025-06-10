@@ -1,11 +1,11 @@
-// Dữ liệu mẫu cho ứng dụng
+
 const initialData = {
-  // Dữ liệu người dùng
+  
   users: [
     {
       id: 1,
       username: 'admin',
-      password: 'admin123', // Trong thực tế, mật khẩu nên được mã hóa
+      password: 'admin123', 
       fullName: 'Quản trị viên',
       role: 'admin',
       avatar: 'assets/icon/avatar.jpg'
@@ -20,14 +20,14 @@ const initialData = {
     }
   ],
 
-  // Dữ liệu công việc
+
   tasks: [
     {
       id: 1,
       title: 'Kiểm tra hệ thống xử lý nước thải tại KCN VSIP',
       description: 'Kiểm tra và đánh giá hiệu suất của hệ thống xử lý nước thải tại KCN VSIP',
       assignee: 2,
-      status: 'in-progress', // not-started, in-progress, completed, overdue
+      status: 'in-progress', 
       priority: 'high',
       projectId: 1,
       deadline: '2024-06-15T17:00:00',
@@ -94,7 +94,7 @@ const initialData = {
     }
   ],
 
-  // Dữ liệu báo cáo kế hoạch
+
   reports: [
     {
       id: 1,
@@ -105,10 +105,10 @@ const initialData = {
       createdAt: '2024-04-01T09:00:00',
       updatedAt: '2024-04-05T14:00:00'
     }
-    // Thêm các báo cáo khác...
+  
   ],
 
-  // Dữ liệu nhật ký công việc
+ 
   journals: [
     {
       id: 1,
@@ -119,10 +119,10 @@ const initialData = {
       projectId: 1,
       createdAt: '2024-06-10T17:00:00'
     }
-    // Thêm các nhật ký khác...
+  
   ],
 
-  // Dữ liệu thông báo
+
   notifications: [
     {
       id: 1,

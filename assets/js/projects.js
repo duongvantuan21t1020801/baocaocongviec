@@ -1,9 +1,7 @@
-// Module quản lý dự án
+
 const ProjectsModule = (function() {
-    // Private variables
-    let projects = [];
     
-    // Private functions
+    let projects = [];
     function formatDate(date) {
       const d = new Date(date);
       const day = String(d.getDate()).padStart(2, '0');
@@ -12,19 +10,17 @@ const ProjectsModule = (function() {
       return `${day}/${month}/${year}`;
     }
     
-    // Public API
+    
     return {
-      // Lấy tất cả dự án
+      
       getProjects: function() {
         return projects;
       },
       
-      // Lấy dự án theo ID
       getProjectById: function(id) {
         return projects.find(project => project.id === id);
       },
-      
-      // Thêm dự án mới
+    
       addProject: function(projectData) {
         const project = {
           ...projectData,
@@ -34,23 +30,23 @@ const ProjectsModule = (function() {
         
         projects.push(project);
         
-        // Lưu vào localStorage
+     
         this.saveProjects();
         return project;
       },
       
-      // Lưu dự án vào localStorage
+    
       saveProjects: function() {
         localStorage.setItem('projects', JSON.stringify(projects));
       },
       
-      // Tải dự án từ localStorage
+      
       loadProjects: function() {
         const storedProjects = localStorage.getItem('projects');
         if (storedProjects) projects = JSON.parse(storedProjects);
       },
       
-      // Tạo dự án mẫu
+      
       generateSampleProjects: function() {
         projects = [
           {

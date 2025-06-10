@@ -1,104 +1,235 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Đăng ký - Báo cáo công việc</title>
-  <link rel="stylesheet" href="assets/css/login.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký</title>
+    <link rel="stylesheet" href="assets/css/auth.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body class="fade-in">
-  <div class="container">
-    <div class="login-box">
-      <div class="logo">
-        <img src="assets/icon/logo.png" alt="Logo công ty" class="logo-img" />
-      </div>
-      <h1>Đăng ký tài khoản</h1>
-      <p class="subtitle">Tạo tài khoản mới để bắt đầu</p>
-
-      <form id="register-form">
-        <div class="input-group">
-          <input type="email" id="new-email" placeholder="Email" required />
+<body>
+    <div class="auth-container">
+        <div class="auth-background">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+                <div class="shape shape-5"></div>
+            </div>
         </div>
-        <div class="input-group">
-          <input type="password" id="new-password" placeholder="Mật khẩu" required />
-          <span class="toggle-password" id="toggleNewPassword">👁️</span>
+        
+        <div class="auth-content">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <div class="logo">
+                        <i class="fas fa-tasks"></i>
+                        <span>Môi trường Á Châu</span>
+                    </div>
+                    <h1>Tạo tài khoản mới</h1>
+                    <p>Bắt đầu hành trình quản lý công việc hiệu quả</p>
+                </div>
+                
+                <form class="auth-form" id="registerForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">
+                                <i class="fas fa-user"></i>
+                                Họ
+                            </label>
+                            <input type="text" id="firstName" name="firstName" placeholder="Nhập họ" required>
+                            <span class="error-message" id="firstNameError"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="lastName">
+                                <i class="fas fa-user"></i>
+                                Tên
+                            </label>
+                            <input type="text" id="lastName" name="lastName" placeholder="Nhập tên" required>
+                            <span class="error-message" id="lastNameError"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">
+                            <i class="fas fa-envelope"></i>
+                            Email
+                        </label>
+                        <input type="email" id="email" name="email" placeholder="Nhập email của bạn" required>
+                        <span class="error-message" id="emailError"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">
+                            <i class="fas fa-phone"></i>
+                            Số điện thoại
+                        </label>
+                        <input type="tel" id="phone" name="phone" placeholder="Nhập số điện thoại" required>
+                        <span class="error-message" id="phoneError"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company">
+                            <i class="fas fa-building"></i>
+                            Công ty/Tổ chức
+                        </label>
+                        <input type="text" id="company" name="company" placeholder="Nhập tên công ty (tùy chọn)">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="role">
+                            <i class="fas fa-briefcase"></i>
+                            Vai trò
+                        </label>
+                        <select id="role" name="role" required>
+                            <option value="">Chọn vai trò của bạn</option>
+                            <option value="manager">Quản lý</option>
+                            <option value="team-lead">Trưởng nhóm</option>
+                            <option value="developer">Lập trình viên</option>
+                            <option value="designer">Thiết kế</option>
+                            <option value="analyst">Phân tích viên</option>
+                            <option value="other">Khác</option>
+                        </select>
+                        <span class="error-message" id="roleError"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">
+                            <i class="fas fa-lock"></i>
+                            Mật khẩu
+                        </label>
+                        <div class="password-input">
+                            <input type="password" id="password" name="password" placeholder="Tạo mật khẩu" required>
+                            <button type="button" class="toggle-password" onclick="togglePassword('password')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="password-strength" id="passwordStrength">
+                            <div class="strength-bar">
+                                <div class="strength-fill"></div>
+                            </div>
+                            <span class="strength-text">Độ mạnh mật khẩu</span>
+                        </div>
+                        <span class="error-message" id="passwordError"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmPassword">
+                            <i class="fas fa-lock"></i>
+                            Xác nhận mật khẩu
+                        </label>
+                        <div class="password-input">
+                            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Nhập lại mật khẩu" required>
+                            <button type="button" class="toggle-password" onclick="togglePassword('confirmPassword')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <span class="error-message" id="confirmPasswordError"></span>
+                    </div>
+                    
+                    <div class="form-options">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="terms" required>
+                            <span class="checkmark"></span>
+                            Tôi đồng ý với <a href="terms.html" target="_blank">Điều khoản sử dụng</a> và <a href="privacy.html" target="_blank">Chính sách bảo mật</a>
+                        </label>
+                        
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="newsletter">
+                            <span class="checkmark"></span>
+                            Nhận thông báo về tính năng mới và cập nhật
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary btn-register">
+                        <span class="btn-text">Tạo tài khoản</span>
+                        <div class="btn-loader" style="display: none;">
+                            <i class="fas fa-spinner fa-spin"></i>
+                        </div>
+                    </button>
+                    
+                    <div class="divider">
+                        <span>Hoặc đăng ký với</span>
+                    </div>
+                    
+                    <div class="social-login">
+                        <button type="button" class="btn-social btn-google" onclick="registerWithGoogle()">
+                            <i class="fab fa-google"></i>
+                            Google
+                        </button>
+                        <button type="button" class="btn-social btn-microsoft" onclick="registerWithMicrosoft()">
+                            <i class="fab fa-microsoft"></i>
+                            Microsoft
+                        </button>
+                    </div>
+                    
+                    <div class="auth-footer">
+                        <p>Đã có tài khoản? <a href="login.html" class="auth-link">Đăng nhập ngay</a></p>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="auth-features">
+                <h3>Bắt đầu với WorkFlow</h3>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <i class="fas fa-rocket"></i>
+                        <div>
+                            <h4>Khởi tạo nhanh</h4>
+                            <p>Thiết lập dự án và nhóm làm việc chỉ trong vài phút</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-cogs"></i>
+                        <div>
+                            <h4>Tùy chỉnh linh hoạt</h4>
+                            <p>Điều chỉnh quy trình làm việc phù hợp với team</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <div>
+                            <h4>Hướng dẫn chi tiết</h4>
+                            <p>Tài liệu và video hướng dẫn đầy đủ</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-headset"></i>
+                        <div>
+                            <h4>Hỗ trợ 24/7</h4>
+                            <p>Đội ngũ hỗ trợ sẵn sàng giúp đỡ mọi lúc</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"Môi trường Á Châu đưa ra các giải pháp giúp xử lý chất thải và bảo vệ thiên nhiên hiệu quả."</p>
+                        <div class="testimonial-author">
+                            <img src="assets/icon/avatar.jpg">
+                            <div>
+                                <strong>Nguyễn Văn Tuấn</strong>
+                                <span>CEO, Company</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="input-group">
-          <input type="password" id="confirm-password" placeholder="Xác nhận mật khẩu" required />
-          <span class="toggle-password" id="toggleConfirmPassword">👁️</span>
-        </div>
-
-        <button type="submit" class="btn login-btn">Đăng ký</button>
-      </form>
-
-      <p class="signup">Đã có tài khoản? <a href="login.html">Đăng nhập</a></p>
     </div>
-  </div>
-
-  <!-- Modal ví dụ (có thể đặt ở cuối body) -->
-  <div id="info-modal" class="modal">
-    <div class="modal-content">
-      <span class="close" id="close-info">&times;</span>
-      <p id="modal-message">Thông báo đăng ký!</p>
+    <div class="toast" id="toast">
+        <div class="toast-content">
+            <i class="toast-icon"></i>
+            <span class="toast-message"></span>
+        </div>
+        <button class="toast-close" onclick="hideToast()">
+            <i class="fas fa-times"></i>
+        </button>
     </div>
-  </div>
-  <script>
-    // Mở modal
-    function openModal(message) {
-      document.getElementById('modal-message').innerText = message;
-      document.getElementById('info-modal').style.display = 'block';
-    }
-    // Đóng modal
-    function closeModal() {
-      document.getElementById('info-modal').style.display = 'none';
-    }
-    document.getElementById('close-info').onclick = closeModal;
-    window.onclick = function(event) {
-      var modal = document.getElementById('info-modal');
-      if (event.target == modal) {
-        closeModal();
-      }
-    };
-    // Ví dụ sử dụng khi đăng ký thành công:
-    document.getElementById('register-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const email = document.getElementById('new-email').value;
-      const password = document.getElementById('new-password').value;
-      const confirmPassword = document.getElementById('confirm-password').value;
-      if (password !== confirmPassword) {
-        alert("Mật khẩu không khớp!");
-        return;
-      }
-      localStorage.setItem('userEmail', email);
-      localStorage.setItem('userPassword', password);
-      document.body.classList.add('fade-out');
-      setTimeout(function() {
-        window.location.href = "index.html";
-      }, 500);
-    });
     
-    // Chức năng hiển thị/ẩn mật khẩu
-    document.getElementById('toggleNewPassword').onclick = function() {
-      var pwd = document.getElementById('new-password');
-      if (pwd.type === 'password') {
-        pwd.type = 'text';
-        this.textContent = '🔓';
-      } else {
-        pwd.type = 'password';
-        this.textContent = '🔒';
-      }
-    };
-    
-    document.getElementById('toggleConfirmPassword').onclick = function() {
-      var pwd = document.getElementById('confirm-password');
-      if (pwd.type === 'password') {
-        pwd.type = 'text';
-        this.textContent = '🔓';
-      } else {
-        pwd.type = 'password';
-        this.textContent = '🔒';
-      }
-    };
-  </script>
+    <script src="assets/js/auth.js"></script>
 </body>
 </html>

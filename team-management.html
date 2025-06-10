@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý nhóm</title>
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="assets/css/team-management.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="dashboard-page">
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="fas fa-tasks"></i>
+                    Môi trường Á Châu
+                </div>
+                <div class="sidebar-user">
+                    <img src="assets/icon/avatar.jpg" 
+                         alt="User Avatar" class="sidebar-avatar" id="sidebarAvatar">
+                    <div class="sidebar-user-info">
+                        <h4 id="sidebarUserName">Người dùng</h4>
+                        <p id="sidebarUserRole">Vai trò</p>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="work-plans.html" class="nav-item">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>Kế hoạch công việc</span>
+                </a>
+                <a href="daily-logs.html" class="nav-item">
+                    <i class="fas fa-book"></i>
+                    <span>Nhật ký công việc</span>
+                </a>
+                <a href="reports.html" class="nav-item">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Báo cáo</span>
+                </a>
+                <a href="team-management.html" class="nav-item active">
+                    <i class="fas fa-users"></i>
+                    <span>Quản lý nhóm</span>
+                </a>
+                <a href="profile.html" class="nav-item">
+                    <i class="fas fa-user"></i>
+                    <span>Hồ sơ cá nhân</span>
+                </a>
+                <a href="settings.html" class="nav-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Cài đặt</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Đăng xuất</span>
+                </button>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header class="header">
+                <div class="header-left">
+                    <button class="sidebar-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="page-title">Quản lý nhóm</h1>
+                </div>
+                
+                <div class="header-right">
+                    <div class="header-search">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Tìm kiếm thành viên..." id="teamSearchInput">
+                        </div>
+                    </div>
+                    
+                    <div class="header-actions">
+                        <button class="btn-primary" onclick="openAddMemberModal()">
+                            <i class="fas fa-user-plus"></i>
+                            Thêm thành viên
+                        </button>
+                        
+                        <button class="notification-btn">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge">3</span>
+                        </button>
+                        
+                        <div class="user-menu">
+                            <div class="user-avatar">
+                                <img src="assets/icon/avatar.jpg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <div class="content-area">
+                <div class="team-overview">
+                    <div class="overview-cards">
+                        <div class="overview-card">
+                            <div class="card-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3 id="totalMembers">0</h3>
+                                <p>Tổng thành viên</p>
+                            </div>
+                        </div>
+                        
+                        <div class="overview-card">
+                            <div class="card-icon">
+                                <i class="fas fa-user-check"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3 id="activeMembers">0</h3>
+                                <p>Đang hoạt động</p>
+                            </div>
+                        </div>
+                        
+                        <div class="overview-card">
+                            <div class="card-icon">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3 id="activeProjects">0</h3>
+                                <p>Dự án đang thực hiện</p>
+                            </div>
+                        </div>
+                        
+                        <div class="overview-card">
+                            <div class="card-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3 id="teamEfficiency">0%</h3>
+                                <p>Hiệu suất nhóm</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-tabs">
+                    <div class="tab-nav">
+                        <button class="tab-btn active" onclick="switchTeamTab('members')">
+                            <i class="fas fa-users"></i>
+                            Thành viên
+                        </button>
+                        <button class="tab-btn" onclick="switchTeamTab('departments')">
+                            <i class="fas fa-building"></i>
+                            Phòng ban
+                        </button>
+                        <button class="tab-btn" onclick="switchTeamTab('roles')">
+                            <i class="fas fa-user-tag"></i>
+                            Vai trò
+                        </button>
+                        <button class="tab-btn" onclick="switchTeamTab('permissions')">
+                            <i class="fas fa-shield-alt"></i>
+                            Quyền hạn
+                        </button>
+                    </div>
+                    <div class="tab-content active" id="members-tab">
+                        <div class="members-header">
+                            <div class="members-filters">
+                                <select id="departmentFilter">
+                                    <option value="">Tất cả phòng ban</option>
+                                    <option value="IT">Công nghệ thông tin</option>
+                                    <option value="HR">Nhân sự</option>
+                                    <option value="Marketing">Marketing</option>
+                                    <option value="Sales">Kinh doanh</option>
+                                </select>
+                                
+                                <select id="roleFilter">
+                                    <option value="">Tất cả vai trò</option>
+                                    <option value="Manager">Quản lý</option>
+                                    <option value="Developer">Lập trình viên</option>
+                                    <option value="Designer">Thiết kế</option>
+                                    <option value="Tester">Kiểm thử</option>
+                                </select>
+                                
+                                <select id="statusFilter">
+                                    <option value="">Tất cả trạng thái</option>
+                                    <option value="active">Đang hoạt động</option>
+                                    <option value="inactive">Không hoạt động</option>
+                                    <option value="pending">Chờ xác nhận</option>
+                                </select>
+                            </div>
+                            
+                            <div class="view-options">
+                                <button class="view-btn active" onclick="setMembersView('grid')">
+                                    <i class="fas fa-th"></i>
+                                </button>
+                                <button class="view-btn" onclick="setMembersView('list')">
+                                    <i class="fas fa-list"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="members-container" id="membersContainer">
+                        </div>
+                    </div>
+                    <div class="tab-content" id="departments-tab">
+                        <div class="departments-header">
+                            <button class="btn-primary" onclick="openAddDepartmentModal()">
+                                <i class="fas fa-plus"></i>
+                                Thêm phòng ban
+                            </button>
+                        </div>
+                        
+                        <div class="departments-grid" id="departmentsGrid">
+                        </div>
+                    </div>
+                    <div class="tab-content" id="roles-tab">
+                        <div class="roles-header">
+                            <button class="btn-primary" onclick="openAddRoleModal()">
+                                <i class="fas fa-plus"></i>
+                                Thêm vai trò
+                            </button>
+                        </div>
+                        
+                        <div class="roles-list" id="rolesList">
+                        </div>
+                    </div>
+                    <div class="tab-content" id="permissions-tab">
+                        <div class="permissions-matrix" id="permissionsMatrix">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div class="modal" id="addMemberModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Thêm thành viên mới</h3>
+                <button class="modal-close" onclick="closeAddMemberModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="addMemberForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="memberFirstName">Họ</label>
+                            <input type="text" id="memberFirstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="memberLastName">Tên</label>
+                            <input type="text" id="memberLastName" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="memberEmail">Email</label>
+                        <input type="email" id="memberEmail" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="memberPhone">Số điện thoại</label>
+                            <input type="tel" id="memberPhone">
+                        </div>
+                        <div class="form-group">
+                            <label for="memberDepartment">Phòng ban</label>
+                            <select id="memberDepartment" required>
+                                <option value="">Chọn phòng ban</option>
+                                <option value="IT">Công nghệ thông tin</option>
+                                <option value="HR">Nhân sự</option>
+                                <option value="Marketing">Marketing</option>
+                                <option value="Sales">Kinh doanh</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="memberRole">Vai trò</label>
+                            <select id="memberRole" required>
+                                <option value="">Chọn vai trò</option>
+                                <option value="Manager">Quản lý</option>
+                                <option value="Developer">Lập trình viên</option>
+                                <option value="Designer">Thiết kế</option>
+                                <option value="Tester">Kiểm thử</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="memberStartDate">Ngày bắt đầu</label>
+                            <input type="date" id="memberStartDate" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="memberNotes">Ghi chú</label>
+                        <textarea id="memberNotes" rows="3" placeholder="Thông tin bổ sung về thành viên..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeAddMemberModal()">Hủy</button>
+                <button class="btn-primary" onclick="addMember()">Thêm thành viên</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="addDepartmentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Thêm phòng ban mới</h3>
+                <button class="modal-close" onclick="closeAddDepartmentModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="addDepartmentForm">
+                    <div class="form-group">
+                        <label for="departmentName">Tên phòng ban</label>
+                        <input type="text" id="departmentName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="departmentCode">Mã phòng ban</label>
+                        <input type="text" id="departmentCode" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="departmentManager">Trưởng phòng</label>
+                        <select id="departmentManager">
+                            <option value="">Chọn trưởng phòng</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="departmentDescription">Mô tả</label>
+                        <textarea id="departmentDescription" rows="3" placeholder="Mô tả về phòng ban..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeAddDepartmentModal()">Hủy</button>
+                <button class="btn-primary" onclick="addDepartment()">Thêm phòng ban</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="addRoleModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Thêm vai trò mới</h3>
+                <button class="modal-close" onclick="closeAddRoleModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="addRoleForm">
+                    <div class="form-group">
+                        <label for="roleName">Tên vai trò</label>
+                        <input type="text" id="roleName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="roleLevel">Cấp độ</label>
+                        <select id="roleLevel" required>
+                            <option value="">Chọn cấp độ</option>
+                            <option value="1">Cấp 1 - Nhân viên</option>
+                            <option value="2">Cấp 2 - Trưởng nhóm</option>
+                            <option value="3">Cấp 3 - Quản lý</option>
+                            <option value="4">Cấp 4 - Giám đốc</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="roleDescription">Mô tả</label>
+                        <textarea id="roleDescription" rows="3" placeholder="Mô tả về vai trò..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Quyền hạn</label>
+                        <div class="permissions-checkboxes">
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="read_plans"> Xem kế hoạch
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="create_plans"> Tạo kế hoạch
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="edit_plans"> Chỉnh sửa kế hoạch
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="delete_plans"> Xóa kế hoạch
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="manage_team"> Quản lý nhóm
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="view_reports"> Xem báo cáo
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeAddRoleModal()">Hủy</button>
+                <button class="btn-primary" onclick="addRole()">Thêm vai trò</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="memberDetailModal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3>Chi tiết thành viên</h3>
+                <button class="modal-close" onclick="closeMemberDetailModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="member-detail-content" id="memberDetailContent">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeMemberDetailModal()">Đóng</button>
+                <button class="btn-primary" onclick="editMember()">Chỉnh sửa</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="assets/js/team-management.js"></script>
+    <script src="assets/js/sidebar.js"></script>
+</body>
+</html>
