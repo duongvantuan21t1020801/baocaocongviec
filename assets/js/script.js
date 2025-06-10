@@ -4,18 +4,26 @@ const slides = ["assets/image/image1.jpg", "assets/image/image2.jpg", "assets/im
 const slideshow = document.getElementById("slideshow");
 const dots = document.querySelectorAll(".dot");
 
-// Hiển thị slide theo chỉ số
+// Hiển thị slide theo chỉ số với hiệu ứng fade
 function showSlide(index) {
   slideIndex = index;
   if (slideIndex >= slides.length) slideIndex = 0;
   if (slideIndex < 0) slideIndex = slides.length - 1;
   
-  slideshow.src = slides[slideIndex];
+  // Thêm hiệu ứng fade mượt mà hơn
+  slideshow.style.opacity = 0;
+  slideshow.style.transform = 'scale(0.98)';
   
-  // Cập nhật trạng thái active cho dots
-  dots.forEach((dot, i) => {
-    dot.classList.toggle("active-dot", i === slideIndex);
-  });
+  setTimeout(() => {
+    slideshow.src = slides[slideIndex];
+    slideshow.style.opacity = 1;
+    slideshow.style.transform = 'scale(1)';
+    
+    // Cập nhật trạng thái active cho dots
+    dots.forEach((dot, i) => {
+      dot.classList.toggle("active-dot", i === slideIndex);
+    });
+  }, 300);
 }
 
 // Chuyển đến slide tiếp theo

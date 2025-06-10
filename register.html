@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng ký - Báo cáo công việc</title>
+  <link rel="stylesheet" href="assets/css/login.css">
+</head>
+<body class="fade-in">
+  <div class="container">
+    <div class="login-box">
+      <div class="logo">
+        <img src="assets/icon/logo.png" alt="Logo công ty" class="logo-img" />
+      </div>
+      <h1>Đăng ký tài khoản</h1>
+      <p class="subtitle">Tạo tài khoản mới để bắt đầu</p>
+
+      <form id="register-form">
+        <div class="input-group">
+          <input type="email" id="new-email" placeholder="Email" required />
+        </div>
+        <div class="input-group">
+          <input type="password" id="new-password" placeholder="Mật khẩu" required />
+          <span class="toggle-password" id="toggleNewPassword">👁️</span>
+        </div>
+        <div class="input-group">
+          <input type="password" id="confirm-password" placeholder="Xác nhận mật khẩu" required />
+          <span class="toggle-password" id="toggleConfirmPassword">👁️</span>
+        </div>
+
+        <button type="submit" class="btn login-btn">Đăng ký</button>
+      </form>
+
+      <p class="signup">Đã có tài khoản? <a href="login.html">Đăng nhập</a></p>
+    </div>
+  </div>
+
+  <!-- Modal ví dụ (có thể đặt ở cuối body) -->
+  <div id="info-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="close-info">&times;</span>
+      <p id="modal-message">Thông báo đăng ký!</p>
+    </div>
+  </div>
+  <script>
+    // Mở modal
+    function openModal(message) {
+      document.getElementById('modal-message').innerText = message;
+      document.getElementById('info-modal').style.display = 'block';
+    }
+    // Đóng modal
+    function closeModal() {
+      document.getElementById('info-modal').style.display = 'none';
+    }
+    document.getElementById('close-info').onclick = closeModal;
+    window.onclick = function(event) {
+      var modal = document.getElementById('info-modal');
+      if (event.target == modal) {
+        closeModal();
+      }
+    };
+    // Ví dụ sử dụng khi đăng ký thành công:
+    document.getElementById('register-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('new-email').value;
+      const password = document.getElementById('new-password').value;
+      const confirmPassword = document.getElementById('confirm-password').value;
+      if (password !== confirmPassword) {
+        alert("Mật khẩu không khớp!");
+        return;
+      }
+      localStorage.setItem('userEmail', email);
+      localStorage.setItem('userPassword', password);
+      document.body.classList.add('fade-out');
+      setTimeout(function() {
+        window.location.href = "index.html";
+      }, 500);
+    });
+    
+    // Chức năng hiển thị/ẩn mật khẩu
+    document.getElementById('toggleNewPassword').onclick = function() {
+      var pwd = document.getElementById('new-password');
+      if (pwd.type === 'password') {
+        pwd.type = 'text';
+        this.textContent = '🔓';
+      } else {
+        pwd.type = 'password';
+        this.textContent = '🔒';
+      }
+    };
+    
+    document.getElementById('toggleConfirmPassword').onclick = function() {
+      var pwd = document.getElementById('confirm-password');
+      if (pwd.type === 'password') {
+        pwd.type = 'text';
+        this.textContent = '🔓';
+      } else {
+        pwd.type = 'password';
+        this.textContent = '🔒';
+      }
+    };
+  </script>
+</body>
+</html>

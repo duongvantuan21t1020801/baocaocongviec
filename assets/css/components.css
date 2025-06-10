@@ -1,4 +1,4 @@
-/* Buttons */
+
 .btn {
     padding: 0.5rem 1rem;
     border-radius: 4px;
@@ -56,7 +56,6 @@
     background-color: #0052cc;
   }
   
-  /* Cards */
   .overview-card {
     background-color: white;
     border-radius: var(--radius);
@@ -84,7 +83,6 @@
     font-size: 10px;
   }
   
-  /* Stat cards */
   .quick-stats {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -132,7 +130,6 @@
     color: var(--light-text);
   }
   
-  /* Tables */
   .work-table {
     width: 100%;
     border-collapse: collapse;
@@ -170,7 +167,6 @@
     background-color: #f8f9fa;
   }
   
-  /* Status dots */
   .status-dot {
     display: inline-block;
     width: 6px;
@@ -193,7 +189,6 @@
     background-color: var(--success-color);
   }
   
-  /* Search box */
   .search-box {
     display: flex;
     align-items: center;
@@ -210,7 +205,6 @@
     font-size: 14px;
   }
   
-  /* Progress circle */
   .progress-circle {
     width: 150px;
     height: 150px;
@@ -227,7 +221,6 @@
     font-weight: 500;
   }
   
-  /* Schedule */
   .schedule-content {
     padding: 0.5rem 0;
   }
@@ -270,7 +263,6 @@
     color: var(--primary-color);
   }
   
-  /* Project cards */
   .project-card {
     background-color: white;
     border-radius: var(--radius);
@@ -301,7 +293,6 @@
     margin-bottom: 1rem;
   }
   
-  /* Chart container */
   .chart-container {
     background-color: white;
     border-radius: var(--radius);

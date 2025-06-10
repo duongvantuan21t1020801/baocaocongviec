@@ -1,6 +1,4 @@
-/* CSS cho các trang báo cáo */
 
-/* Biến màu sắc cho trạng thái báo cáo */
 :root {
     --completed-color: #2a9d8f;
     --in-progress-color: #2b6cb0;
@@ -8,7 +6,6 @@
     --overdue-color: #e53e3e;
   }
   
-  /* Header báo cáo */
   .report-header {
     display: flex;
     justify-content: space-between;
@@ -22,7 +19,6 @@
     margin: 0;
   }
   
-  /* Tabs báo cáo */
   .report-tabs {
     display: flex;
     margin-bottom: 1.5rem;
@@ -49,7 +45,6 @@
     color: var(--primary-color);
   }
   
-  /* Nút tạo báo cáo */
   .btn-create-report {
     display: flex;
     align-items: center;

@@ -1,6 +1,70 @@
-// Khởi tạo biểu đồ
-function initCharts() {
-  // Biểu đồ tiến độ công việc
+function createUsageChart() {
+  const ctx = document.getElementById('usageChart').getContext('2d');
+  
+  const data = {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+    datasets: [
+      {
+        label: 'Dữ liệu 1',
+        data: [30, 65, 45, 70, 55, 40],
+        backgroundColor: '#4169e1',
+        borderRadius: 5,
+        barThickness: 15,
+      },
+      {
+        label: 'Dữ liệu 2',
+        data: [45, 50, 65, 35, 60, 35],
+        backgroundColor: '#00b894',
+        borderRadius: 5,
+        barThickness: 15,
+      },
+      {
+        label: 'Dữ liệu 3',
+        data: [55, 40, 60, 45, 50, 30],
+        backgroundColor: '#54a0ff',
+        borderRadius: 5,
+        barThickness: 15,
+      }
+    ]
+  };
+  
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: false
+      }
+    },
+    scales: {
+      x: {
+        grid: {
+          display: false
+        }
+      },
+      y: {
+        beginAtZero: true,
+        grid: {
+          borderDash: [2, 4]
+        },
+        ticks: {
+          callback: function(value) {
+            return value + '%';
+          }
+        }
+      }
+    }
+  };
+  
+  new Chart(ctx, {
+    type: 'bar',
+    data: data,
+    options: options
+  });
+}
+
+// Biểu đồ tiến độ công việc
+function createProgressChart() {
   const progressChartElement = document.getElementById('progressChart');
   
   if (progressChartElement) {
@@ -58,3 +122,31 @@ function initCharts() {
     });
   }
 }
+
+// Khởi tạo biểu đồ khi trang được tải
+document.addEventListener('DOMContentLoaded', function() {
+  // Kiểm tra xem element có tồn tại không trước khi tạo biểu đồ
+  if (document.getElementById('usageChart')) {
+    createUsageChart();
+  }
+  
+  if (document.getElementById('progressChart')) {
+    createProgressChart();
+  }
+});
+function initCharts() {
+  // Kiểm tra xem element có tồn tại không trước khi tạo biểu đồ
+  if (document.getElementById('usageChart')) {
+    createUsageChart();
+  }
+  
+  if (document.getElementById('progressChart')) {
+    createProgressChart();
+  }
+}
+// Màu sắc cho biểu đồ
+const chartColors = [
+  '#0066B3', // Xanh dương đậm
+  '#54a0ff', // Xanh dương nhạt
+  '#81ecec'  // Xanh dương rất nhạt
+];

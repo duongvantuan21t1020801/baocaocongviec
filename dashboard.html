@@ -14,7 +14,22 @@
 <body>
   <div class="container">
     <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <i class="fas fa-tasks"></i>
+          <span>BÁO CÁO CÔNG VIỆC</span>
+        </div>
+      </div>
+      
+      <div class="sidebar-search">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Tìm kiếm..." />
+        </div>
+      </div>
+      
       <nav class="sidebar-nav">
+        <h3 class="nav-category">DANH MỤC CHÍNH</h3>
         <ul id="menu-list">
           <li class="active" data-route="home" data-title="Trang chủ">
             <i class="fas fa-home"></i>
@@ -35,6 +50,22 @@
           <li data-route="projects" data-title="Dự án">
             <i class="fas fa-folder"></i>
             <span>Dự án</span>
+          </li>
+        </ul>
+        
+        <h3 class="nav-category">TRUY CẬP NHANH</h3>
+        <ul class="quick-access">
+          <li>
+            <i class="fas fa-star"></i>
+            <span>Đánh dấu</span>
+          </li>
+          <li>
+            <i class="fas fa-clock"></i>
+            <span>Gần đây</span>
+          </li>
+          <li>
+            <i class="fas fa-share-alt"></i>
+            <span>Được chia sẻ</span>
           </li>
         </ul>
       </nav>
@@ -67,29 +98,24 @@
           </div>
           <div class="user-profile">
             <img src="assets/icon/avatar.jpg" alt="Hồ sơ người dùng" class="user-avatar" />
+            <span class="user-name">Nguyễn Văn A</span>
+            <span class="user-email">nguyenvana@gmail.com</span>
           </div>
         </div>
       </header>
       <div class="content">
-        <!-- Nội dung sẽ được render bởi JavaScript -->
+        <!-- Nội dung sẽ được render động bởi JavaScript -->
       </div>
     </main>
   </div>
 
-  <!-- Thư viện Chart.js -->
   <script src="assets/js/chart.js"></script>
-  
-  <!-- Data và API -->
   <script src="assets/js/data.js"></script>
   <script src="assets/js/reports.js"></script>
   <script src="assets/js/reportUI.js"></script>
   <script src="assets/js/projects.js"></script>
   <script src="assets/js/journal.js"></script>
-  
-  <!-- Router -->
   <script src="assets/js/router.js"></script>
-  
-  <!-- Các trang -->
   <script src="assets/js/home.js"></script>
   <script src="assets/js/task.js"></script>
   

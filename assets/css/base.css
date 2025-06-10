@@ -1,32 +1,26 @@
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* Biến CSS */
-  :root {
-    --primary-color: #0066ff;
-    --secondary-color: #f5f5f5;
-    --text-color: #333;
-    --light-text: #666;
-    --border-color: #e0e0e0;
-    --success-color: #4caf50;
-    --warning-color: #ff9800;
-    --danger-color: #f44336;
-    --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    --transition: all 0.3s ease;
-  }
-  
-  /* Typography */
-  body {
-    font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-    line-height: 1.5;
-    color: var(--text-color);
-    background-color: #f9f9f9;
-  }
+:root {
+  /* Màu chính từ moitruongachau.com - đổi thành tông xanh dương */
+  --primary-color: #0066B3; /* Xanh dương đậm - thay thế xanh lá */
+  --secondary-color: #54a0ff; /* Xanh dương nhạt - thay thế */
+  --text-color: #333333; /* Đen nhạt - giữ nguyên */
+  --light-text: #6c757d; /* Xám - giữ nguyên */
+  --border-color: #e0e0e0; /* Xám nhạt - giữ nguyên */
+  --success-color: #00A651; /* Xanh lá - giữ nguyên cho thành công */
+  --warning-color: #FFC107; /* Vàng cam - giữ nguyên */
+  --danger-color: #DC3545; /* Đỏ - giữ nguyên */
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Đổ bóng - giữ nguyên */
+  --transition: all 0.3s ease; /* Hiệu ứng chuyển đổi - giữ nguyên */
+  --background-color: #F8F9FA; /* Nền trang - giữ nguyên */
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
   
   h1, h2, h3, h4, h5, h6 {
     font-weight: 500;
