@@ -32,9 +32,8 @@ class TeamManager {
                 role: 'Manager',
                 status: 'active',
                 startDate: '2023-01-15',
-                avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face',
                 notes: 'Trưởng phòng IT với 5 năm kinh nghiệm',
-                projects: ['Dự án A', 'Dự án B'],
+                projects: ['Dự án A'],
                 skills: ['JavaScript', 'Python', 'Management'],
                 lastActive: '2024-12-15T10:30:00'
             },
@@ -48,7 +47,6 @@ class TeamManager {
                 role: 'Manager',
                 status: 'active',
                 startDate: '2023-03-20',
-                avatar: 'assets/icon/avatar.jpg',
                 notes: 'Chuyên viên nhân sự cao cấp',
                 projects: ['Tuyển dụng Q4'],
                 skills: ['HR Management', 'Recruitment', 'Training'],
@@ -64,9 +62,8 @@ class TeamManager {
                 role: 'Developer',
                 status: 'active',
                 startDate: '2023-06-10',
-                avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face',
                 notes: 'Lập trình viên Frontend',
-                projects: ['Dự án A', 'Dự án C'],
+                projects: ['Dự án C'],
                 skills: ['React', 'Vue.js', 'CSS'],
                 lastActive: '2024-12-15T11:45:00'
             }
@@ -572,6 +569,7 @@ function setMembersView(view) {
 function openAddMemberModal() {
     document.getElementById('addMemberModal').classList.add('active');
     document.getElementById('memberStartDate').value = new Date().toISOString().split('T')[0];
+    localStorage.removeItem('openAddMemberModalOnLoad');
 }
 
 function closeAddMemberModal() {
@@ -593,6 +591,7 @@ function openAddDepartmentModal() {
     });
     
     document.getElementById('addDepartmentModal').classList.add('active');
+    localStorage.removeItem('openAddDepartmentModalOnLoad');
 }
 
 function closeAddDepartmentModal() {
@@ -602,6 +601,7 @@ function closeAddDepartmentModal() {
 
 function openAddRoleModal() {
     document.getElementById('addRoleModal').classList.add('active');
+    localStorage.removeItem('openAddRoleModalOnLoad');
 }
 
 function closeAddRoleModal() {
@@ -677,6 +677,7 @@ function showMemberDetail(memberId) {
     `;
     
     document.getElementById('memberDetailModal').classList.add('active');
+    localStorage.removeItem('openMemberDetailModalOnLoad');
 }
 
 function closeMemberDetailModal() {
@@ -826,7 +827,46 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     teamManager = new TeamManager();
+    checkModalStates();
 });
+
+function checkModalStates() {
+    setTimeout(() => {
+        if (localStorage.getItem('openAddMemberModalOnLoad') === 'true') {
+            openAddMemberModal();
+            teamManager.showNotification('Đang mở form thêm thành viên theo yêu cầu', 'info');
+        } else if (localStorage.getItem('openAddDepartmentModalOnLoad') === 'true') {
+            openAddDepartmentModal();
+            teamManager.showNotification('Đang mở form thêm phòng ban theo yêu cầu', 'info');
+        } else if (localStorage.getItem('openAddRoleModalOnLoad') === 'true') {
+            openAddRoleModal();
+            teamManager.showNotification('Đang mở form thêm vai trò theo yêu cầu', 'info');
+        } else if (localStorage.getItem('openMemberDetailModalOnLoad') === 'true') {
+            const memberId = parseInt(localStorage.getItem('memberDetailId'));
+            if (memberId) {
+                showMemberDetail(memberId);
+                teamManager.showNotification('Đang mở chi tiết thành viên theo yêu cầu', 'info');
+            }
+        } else {
+            checkUrlParameters();
+        }
+    }, 500);
+}
+
+function checkUrlParameters() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const memberId = urlParams.get('member');
+    
+    if (memberId) {
+        setTimeout(() => {
+            const id = parseInt(memberId);
+            if (!isNaN(id)) {
+                showMemberDetail(id);
+                teamManager.showNotification('Đang mở chi tiết thành viên từ liên kết', 'info');
+            }
+        }, 800);
+    }
+}
 document.addEventListener('DOMContentLoaded', () => {
     const sidebarToggle = document.querySelector('.sidebar-toggle');
     const sidebar = document.querySelector('.sidebar');

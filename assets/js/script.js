@@ -114,6 +114,46 @@ function initializeApp() {
         }
     });
     loadDataFromStorage();
+    checkModalStates();
+    checkUrlParameters();
+}
+
+function checkModalStates() {
+    if (localStorage.getItem('openPlanModalOnLoad') === 'true') {
+        setTimeout(() => {
+            openPlanModal();
+            showNotification('Mở form tạo kế hoạch mới', 'info');
+        }, 500);
+    }
+    if (localStorage.getItem('openDiaryModalOnLoad') === 'true') {
+        setTimeout(() => {
+            openDiaryModal();
+            showNotification('Mở form thêm nhật ký mới', 'info');
+        }, 500);
+    }
+    if (localStorage.getItem('openAddMemberModalOnLoad') === 'true') {
+        setTimeout(() => {
+            openTeamModal();
+            showNotification('Mở form thêm thành viên mới', 'info');
+        }, 500);
+    }
+    if (localStorage.getItem('openReportModalOnLoad') === 'true') {
+        setTimeout(() => {
+            openReportModal();
+            showNotification('Mở form tạo báo cáo mới', 'info');
+        }, 500);
+    }
+}
+
+function checkUrlParameters() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const planId = urlParams.get('plan');
+    if (planId) {
+        setTimeout(() => {
+            viewPlanDetails(parseInt(planId));
+            showNotification('Đang tải thông tin kế hoạch', 'info');
+        }, 500);
+    }
 }
 function setupEventListeners() {
     const navItems = document.querySelectorAll('.nav-item');
@@ -440,6 +480,7 @@ function openPlanModal() {
         modal.classList.add('active');
         planModal.style.display = 'block';
         document.getElementById('diaryModal').style.display = 'none';
+        localStorage.removeItem('openPlanModalOnLoad');
     }
 }
 
@@ -450,11 +491,18 @@ function openDiaryModal() {
         modal.classList.add('active');
         diaryModal.style.display = 'block';
         document.getElementById('planModal').style.display = 'none';
+        localStorage.removeItem('openDiaryModalOnLoad');
     }
 }
 
 function openTeamModal() {
     showNotification('Tính năng đang được phát triển', 'info');
+    localStorage.removeItem('openAddMemberModalOnLoad');
+}
+
+function openReportModal() {
+    showNotification('Đang mở form tạo báo cáo', 'info');
+    localStorage.removeItem('openReportModalOnLoad');
 }
 
 function closeModal() {

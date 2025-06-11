@@ -540,38 +540,43 @@ function addQuickTaskSubmit(event) {
 }
 
 function createNewPlan() {
-    window.location.href = 'work-plans.html';
+    dashboard.showNotification('Đang chuyển đến trang tạo kế hoạch...', 'info');
+    localStorage.setItem('openPlanModalOnLoad', 'true');
     setTimeout(() => {
-        if (window.openPlanModal) {
-            window.openPlanModal();
-        }
-    }, 500);
+        window.location.href = 'work-plans.html';
+    }, 1000);
 }
 
 function addDailyLog() {
-    window.location.href = 'daily-logs.html';
+    dashboard.showNotification('Đang chuyển đến trang nhật ký...', 'info');
+    localStorage.setItem('openDiaryModalOnLoad', 'true');
     setTimeout(() => {
-        if (window.openDiaryModal) {
-            window.openDiaryModal();
-        }
-    }, 500);
+        window.location.href = 'daily-logs.html';
+    }, 1000);
 }
 
 function viewPlan(planId) {
-    window.location.href = `work-plans.html?plan=${planId}`;
+    localStorage.setItem('viewPlanId', planId);
+    dashboard.showNotification('Đang tải thông tin kế hoạch...', 'info');
+    setTimeout(() => {
+        window.location.href = `work-plans.html?plan=${planId}`;
+    }, 1000);
 }
 
 function inviteTeamMember() {
-    window.location.href = 'team-management.html';
+    dashboard.showNotification('Đang chuyển đến trang quản lý nhóm...', 'info');
+    localStorage.setItem('openAddMemberModalOnLoad', 'true');
     setTimeout(() => {
-        if (window.openAddMemberModal) {
-            window.openAddMemberModal();
-        }
-    }, 500);
+        window.location.href = 'team-management.html';
+    }, 1000);
 }
 
 function generateReport() {
-    window.location.href = 'reports.html';
+    dashboard.showNotification('Đang chuyển đến trang báo cáo...', 'info');
+    localStorage.setItem('openReportModalOnLoad', 'true');
+    setTimeout(() => {
+        window.location.href = 'reports.html';
+    }, 1000);
 }
 
 function logout() {

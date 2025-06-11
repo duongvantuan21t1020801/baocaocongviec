@@ -107,14 +107,6 @@
                 </div>
                 
                 <div class="logs-tabs">
-                    <button class="tab-btn active" onclick="switchTab('work')">
-                        <i class="fas fa-briefcase"></i>
-                        Nhật ký công việc
-                    </button>
-                    <button class="tab-btn" onclick="switchTab('personal')">
-                        <i class="fas fa-book"></i>
-                        Nhật ký cá nhân
-                    </button>
                 </div>
                 
                 <div class="logs-container" id="workLogsContainer">
@@ -440,7 +432,60 @@
         }
         document.addEventListener('DOMContentLoaded', function() {
             loadLogs();
+            if (localStorage.getItem('openDiaryModalOnLoad') === 'true') {
+                setTimeout(() => {
+                    openAddLogModal();
+                    showNotification('Mở form thêm nhật ký mới', 'info');
+                    localStorage.removeItem('openDiaryModalOnLoad');
+                }, 500);
+            }
         });
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.style.position = 'fixed';
+            notification.style.top = '20px';
+            notification.style.right = '20px';
+            notification.style.backgroundColor = 'white';
+            notification.style.padding = '15px 20px';
+            notification.style.borderRadius = '8px';
+            notification.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.1)';
+            notification.style.display = 'flex';
+            notification.style.alignItems = 'center';
+            notification.style.gap = '10px';
+            notification.style.zIndex = '3000';
+            notification.style.minWidth = '300px';
+            notification.style.borderLeft = `4px solid ${type === 'success' ? '#4CAF50' : type === 'error' ? '#f44336' : '#2196F3'}`;
+            notification.style.animation = 'slideIn 0.3s ease';
+            
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                <span>${message}</span>
+                <button style="background: none; border: none; color: #666; cursor: pointer; margin-left: auto;" onclick="this.parentElement.remove()">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            document.body.appendChild(notification);
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from {
+                        transform: translateX(100%);
+                        opacity: 0;
+                    }
+                    to {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.remove();
+                }
+            }, 5000);
+        }
     </script>
     <script src="assets/js/sidebar.js"></script>
     <script src="assets/js/dai"></script>

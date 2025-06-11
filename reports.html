@@ -105,7 +105,7 @@
                             <i class="fas fa-download"></i>
                             Xuất báo cáo
                         </button>
-                        <button class="btn-primary" onclick="generateReport()">
+                        <button class="btn-primary" onclick="openCreateReportModal()">
                             <i class="fas fa-chart-line"></i>
                             Tạo báo cáo
                         </button>
@@ -219,10 +219,55 @@
                         
                         <div class="chart-container">
                             <div class="chart-header">
-                                <h3>Phân bố công việc theo loại</h3>
+                                <h3>Phân công công việc theo loại</h3>
                             </div>
                             <div class="chart-content">
                                 <canvas id="taskDistributionChart" width="400" height="200"></canvas>
+                            </div>
+                        </div>
+                    </div>                    
+                    <div class="modal" id="createReportModal" style="display:none;">
+                        <div class="modal-content report-modal">
+                            <div class="modal-header">
+                                <h3>Thêm báo cáo công việc</h3>
+                                <button class="modal-close" onclick="closeCreateReportModal()">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            <div class="modal-body report-modal-body">
+                                <form class="log-form" id="createReportForm">
+                                    <div class="form-group">
+                                        <label>Tiêu đề *</label>
+                                        <input type="text" id="newReportTitle" placeholder="Nhập tiêu đề công việc" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Nội dung *</label>
+                                        <textarea id="newReportContent" placeholder="Mô tả chi tiết công việc, trao đổi, ghi chú..." required></textarea>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Ngày *</label>
+                                            <input type="date" id="newReportDate" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Thời gian *</label>
+                                            <input type="time" id="newReportTime" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Loại báo cáo *</label>
+                                        <select id="newReportType" required>
+                                            <option value="">Chọn loại</option>
+                                            <option value="nang-suat">Năng suất</option>
+                                            <option value="thoi-gian">Thời gian</option>
+                                            <option value="nhom">Nhóm</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Tệp đính kèm</label>
+                                        <input type="file" id="newReportFile" class="file-input" accept=".pdf,.xlsx,.xls">
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -310,61 +355,7 @@
             </div>
         </main>
     </div>
-    
-    <script>
-        function generateReport() {
-            alert('Chức năng tạo báo cáo đang được phát triển');
-        }
-        
-        function exportReport() {
-            alert('Chức năng xuất báo cáo đang được phát triển');
-        }
-        
-        function applyFilters() {
-            const reportType = document.getElementById('reportType').value;
-            const fromDate = document.getElementById('fromDate').value;
-            const toDate = document.getElementById('toDate').value;
-            const employee = document.getElementById('employeeFilter').value;
-            
-            console.log('Applying filters:', { reportType, fromDate, toDate, employee });
-            alert('Đang áp dụng bộ lọc...');
-        }
-        
-        function downloadReport(reportId) {
-            alert(`Đang tải báo cáo ${reportId}...`);
-        }
-        
-        function viewReport(reportId) {
-            alert(`Đang xem báo cáo ${reportId}...`);
-        }
-        
-        function deleteReport(reportId) {
-            if (confirm('Bạn có chắc chắn muốn xóa báo cáo này?')) {
-                alert(`Báo cáo ${reportId} đã được xóa`);
-            }
-        }
-        
-        function viewAllReports() {
-            alert('Chức năng xem tất cả báo cáo đang được phát triển');
-        }
-        document.querySelectorAll('.chart-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.chart-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                
-                const period = this.dataset.period;
-                console.log('Changing chart period to:', period);
-            });
-        });
-        document.addEventListener('DOMContentLoaded', function() {
-            const today = new Date();
-            const thirtyDaysAgo = new Date(today.getTime() - (30 * 24 * 60 * 60 * 1000));
-            
-            document.getElementById('toDate').value = today.toISOString().split('T')[0];
-            document.getElementById('fromDate').value = thirtyDaysAgo.toISOString().split('T')[0];
-            console.log('Initializing charts...');
-        });
-    </script>
     <script src="assets/js/sidebar.js"></script>
+    <script src="assets/js/reports.js"></script>
 </body>
 </html>
